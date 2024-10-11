@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "cheerio": "^1.0.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "pg": "^8.13.0"
+  },
+  "name": "capstone-project---bookshelf-journal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

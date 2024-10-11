@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookshelf Journal</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <section class="header">
+      <ul class="nav">
+        <li><a href="">Home</a></li>
+        <li><a href="">Books</a></li>
+        <li><a href="">Genre</a></li>
+        <li><a href="">Rating</a></li>
+      </ul>
+      <div class="account">
+        <img src="images/user.png" alt="">
+      </div>
+    </section>
+
+    <!-- HOME -->
+    <% if (locals.lucky.genre) {%>
+      <h1 class="title">Random. <span class="sub-title">Displays a book at random.</span></h1>
+      <!-- RANDOM BOOK -->
+      <section class="home">
+        <div class="random-details">
+          <h5><%= lucky.genre %></h5>
+          <h1><%= lucky.title %></h1>
+          <h3><%= lucky.author %></h3>
+          <h5>Recommendation: <%= lucky.rating %>/10</h5>
+          <button class="buttons view-notes">View Notes</button>
+        </div>
+        <div class="random-book">
+          <img src="<%= lucky.img_url %>" alt="Me Before You" class="random-cover">
+        </div>
+      </section>
+    <% } else {%>
+      <h1 class="title">Add books to showcase your collection.</h1>
+    <% } %>
+
+    <!-- BOOKSHELF -->
+    <% if(locals.featuredBooks[0]) {%>
+      <h1>Featured. <span class="sub-title">I highly recommend these books, 10/10.</span></h1>
+      <section class="bookshelf">
+        <% for(let book of featuredBooks) {%>
+          <div class="card">  
+            <img src="<%= book.img_url %>" alt="" class="book-cover">
+            <div class="book-details">
+              <h1><%= book.title %></h1>
+              <h3><%= book.author %></h3>
+              <h4>Recomendation: <%= book.rating %>/10</h4>
+            </div>
+          </div>
+        <% } %>
+      </section>
+    <% } else {}; %>
+
+    <!-- LATEST READ -->
+    <% if(locals.latestBooks[0]) {%>
+      <h1>Latest. <span class="sub-title">The latest books I read.</span></h1>
+      <section class="bookshelf">
+        <% for(let book of latestBooks) {%>
+          <div class="card">  
+            <img src="<%= book.img_url %>" alt="" class="book-cover">
+            <div class="book-details">
+              <h1><%= book.title %></h1>
+              <h3><%= book.author %></h3>
+              <h4>Recomendation: <%= book.rating %>/10</h4>
+            </div>
+          </div>
+        <% } %>
+      </section>
+    <% } else {}; %>
+
+    <!-- ADD BOOK -->
+    <h1>Add new book. <span class="sub-title">Enter the book you've finished reading.</span></h1>
+    <section class="new-book">
+      <div class="form-container">
+        <h1 class="form-title">New Book</h1>
+        <form action="/add" method="POST">
+          <div class="group-container">
+            <div class="form-group">
+              <div>
+                <label for="isbn">ISBN</label>
+                <input type="text" id="isbn" name="isbn" placeholder="Use ISBN-13" required>
+                <span class="error"><%= isbnError  %></span>
+              </div>
+              <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholder="Book Title" required>  
+              </div>
+              <div>
+                <label for="author">Author</label>
+                <input type="text" id="text" name="author" placeholder="Book Author" required>  
+              </div>
+              <div>
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre" placeholder="Book Genre" required>  
+              </div>
+              <div>
+                <label for="dateRead">Date Read</label>
+                <input type="date" id="dateRead" name="dateRead" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <label for="rating">Rating:</label>
+                <select id="rating" name="rating" required>
+                  <option value="10">10</option>
+                  <option value="9">9</option>
+                  <option value="8">8</option>
+                  <option value="7">7</option>
+                  <option value="6">6</option>
+                  <option value="5">5</option>
+                  <option value="4">4</option>
+                  <option value="3">3</option>
+                  <option value="2">2</option>
+                  <option value="1">1</option>
+                </select>
+              </div>
+              <div>
+                <label for="review">Review</label>
+                <textarea id="review" name="review" placeholder="Your review" rows="5"></textarea>
+              </div>
+              <div>
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" placeholder="Your notes" rows="5"></textarea>
+              </div>
+            </div>            
+          </div>
+          <button type="submit" class="add-button">ADD BOOK</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      &copy; 2024 All rights reserved.
+    </footer>
+
+  </div>
+</body>
+</html>
