@@ -24,6 +24,7 @@ let featured = [];
 let random = [];
 let latest = [];
 let invalidISBN = "";
+let addBookNav = "";
 
 async function getFeatured() {
   try {
@@ -62,7 +63,22 @@ app.get("/", async (req, res) => {
       lucky: random,
       featuredBooks: featured,
       latestBooks: latest,
-      isbnError: invalidISBN
+      isbnError: invalidISBN,
+    });
+});
+
+//GET navigate to add book
+app.get("/#add-book", async (req, res) => {
+  await getFeatured();
+  await randomBook();
+  await getLatest();
+
+  res.render("index.ejs",
+    { 
+      lucky: random,
+      featuredBooks: featured,
+      latestBooks: latest,
+      isbnError: invalidISBN,
     });
 });
 
@@ -85,6 +101,7 @@ app.post("/add", async (req, res) => {
     //INSERT data
     try {
       await db.query("INSERT INTO books (isbn, title, author, genre, img_URL, date_Read, rating, review, notes)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);", [ isbn, title, author, genre, img_URL, date, rating, review, notes ]);
+      invalidISBN = "";
       res.redirect("/");
     } catch (err) {
       console.error(err);
@@ -92,7 +109,7 @@ app.post("/add", async (req, res) => {
   } catch (err) {
     console.error(err);
     invalidISBN = "Invalid input: Please use ISBN-13.";
-    res.redirect("/");
+    res.redirect("/#add-book");
   }
 });
 

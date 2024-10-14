@@ -5,6 +5,7 @@ html {
   font-style: normal;
   font-variation-settings:
     "slnt" 0;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -78,7 +79,7 @@ body {
 }
 
 .random-details > * {
-  margin: 0 0 .5rem 0;
+  margin: 0 0 0.2rem 0;
 }
 
 .random-book {
@@ -177,8 +178,7 @@ label {
   margin-bottom: 5px;
 }
 
-input,
-textarea {
+input, textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -204,7 +204,7 @@ button {
   padding: 12px;
   color: #333;
   border-radius: 5px;
-  border: 1px solid #717171;
+  border: 1px solid #5a5a5a;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -212,7 +212,7 @@ button {
 
 button:hover {
   color: #fff;
-  background-color: #717171;
+  background-color: #5a5a5a;
 }
 
 button:active {
