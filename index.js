@@ -139,7 +139,14 @@ app.get("/journal/:id", async (req, res) => {
 //GET edit.ejs
 app.get("/edit.ejs", async (req, res) => {
   const dateTimeString = specifiedBook.date_read;
-  let dateOnly = dateTimeString.toISOString().split('T')[0];
+  let dateOnly;
+  if (typeof dateTimeString === 'string') {
+    dateOnly = dateTimeString.split('T')[0];
+  } else if (dateTimeString instanceof Date) {
+    dateOnly = dateTimeString.toISOString().split('T')[0];
+  } else {
+    console.error('Invalid date format');
+  }
   specifiedBook.date_read = dateOnly;
   res.render("edit.ejs", 
     {
@@ -179,7 +186,19 @@ app.post("/modify", async (req, res) => {
     invalidISBN = "Invalid input: Please use ISBN-13.";
     res.redirect("/edit.ejs");
   }
-})
+});
+
+app.post("/delete/:id", async (req, res) => {
+  const id = specifiedBook.id;
+
+  try {
+    await db.query("DELETE FROM books WHERE id = $1", [id]);
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error deleting post" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

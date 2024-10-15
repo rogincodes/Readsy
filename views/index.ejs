@@ -45,7 +45,7 @@
       <section class="bookshelf">
         <% for(let book of latestBooks) {%>
           <div class="card">
-            <a href="/journal/<%=book.id%>" >
+            <a href="/journal/<%= book.id %>" >
               <img src="<%= book.img_url %>" alt="" class="book-cover">
               <div class="book-details">
               <h1 class="limited-text"><%= book.title %></h1>
