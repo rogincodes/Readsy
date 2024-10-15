@@ -24,7 +24,8 @@ let featured = [];
 let random = [];
 let latest = [];
 let invalidISBN = "";
-let addBookNav = "";
+let specifiedBook = [];
+let currentID = 0;
 
 async function getFeatured() {
   try {
@@ -112,6 +113,73 @@ app.post("/add", async (req, res) => {
     res.redirect("/#add-book");
   }
 });
+
+//GET a specified book by id
+app.get("/journal/:id", async (req, res) => {
+  const rawId = req.params.id.trim();
+  const id = parseInt(rawId, 10); 
+  if (isNaN(id)) {
+    return res.status(400).send('Invalid ID');
+  }
+
+  try {
+    const result = await db.query("SELECT * FROM books WHERE id = $1", [ id ]);
+    specifiedBook = result.rows[0];
+    res.render("journal.ejs",
+      {
+        book: specifiedBook,
+        featuredBooks: featured
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  } 
+});
+
+//GET edit.ejs
+app.get("/edit.ejs", async (req, res) => {
+  const dateTimeString = specifiedBook.date_read;
+  let dateOnly = dateTimeString.toISOString().split('T')[0];
+  specifiedBook.date_read = dateOnly;
+  res.render("edit.ejs", 
+    {
+      book: specifiedBook,
+      isbnError: invalidISBN,
+    }
+  );
+});
+
+//UPDATE book data
+app.post("/modify", async (req, res) => {
+  const isbn = req.body.isbn;
+  const title = req.body.title;
+  const author = req.body.author;
+  const genre = req.body.genre;
+  const date = req.body.dateRead;
+  const rating = req.body.rating;
+  const review = req.body.review;
+  const notes = req.body.notes;
+  const id = specifiedBook.id
+
+  try {
+    //GET book cover from API
+    const result = await axios.get(`https://bookcover.longitood.com/bookcover/${isbn}`);
+    const img_URL = result.data.url;
+
+    //UPDATE data
+    try {
+      await db.query("UPDATE books set isbn = $1, title = $2, author = $3, genre = $4, img_URL = $5, date_Read = $6, rating = $7, review = $8, notes = $9 WHERE id = $10;", [ isbn, title, author, genre, img_URL, date, rating, review, notes, id ]);
+      invalidISBN = "";
+      res.redirect("/");
+    } catch (err) {
+      console.error(err);
+    }
+  } catch (err) {
+    console.error(err);
+    invalidISBN = "Invalid input: Please use ISBN-13.";
+    res.redirect("/edit.ejs");
+  }
+})
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

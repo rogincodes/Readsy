@@ -1,10 +1,8 @@
 html {
   background-color: #f5f5f7;
-  font-family: "Afacad Flux", sans-serif;
-  font-optical-sizing: auto;
+  font-family: "Neuton", serif;
+  font-weight: 800;
   font-style: normal;
-  font-variation-settings:
-    "slnt" 0;
   scroll-behavior: smooth;
 }
 
@@ -27,6 +25,9 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid #333;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .nav {
@@ -68,6 +69,7 @@ body {
 
 .sub-title {
   color: #717171;
+  font-weight: 300;
 }
 
 .random-details {
@@ -110,23 +112,27 @@ body {
   flex-basis: 17%;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
   max-height: 500px;
   font-size: .8rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
 }
 
-.card:hover {
-  transform: scale(1.02);
+.card:hover .book-cover{
+  transform: scale(1.028);
+}
+
+.card > a {
+  color: #333;
+  text-decoration: none;
 }
 
 .book-cover {
   display: flex;
-  height: 250px;
+  height: 300px;
   width: 100%;
   margin: 0;
+  transition: transform 0.2s ease-in-out;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .book-details {
@@ -135,6 +141,15 @@ body {
 
 .book-details > * {
   margin: .3rem 0 0 0;
+}
+
+.limited-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;     /* For WebKit browsers */
+  line-clamp: 2;             /* Placeholder for future standard */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;   /* Adds '...' for truncated text */
 }
 
 .new-book {
@@ -223,6 +238,76 @@ button:active {
 .add-button {
   margin-top: 20px;
   font-weight: 600;
+}
+
+.journal {
+  display: flex;
+  height: 100vh;
+  font-size: 18px;
+}
+
+.journal-cover {
+  flex-basis: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px 0;
+  overflow: hidden;
+}
+
+.edit-delete-btn {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+}
+
+.edit-delete-btn > a {
+  flex-basis: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #333;
+  width: 100px;
+  height: 40px;
+  text-decoration: none;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.edit-btn {
+  background-color: #00924e;
+}
+
+.delete-btn {
+  background-color: rgb(222, 0, 0);
+}
+
+.journal-details {
+  flex-basis: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.journal-details > * {
+  margin: 0;
+  padding: 0;
+}
+
+.scrollable-content {
+  flex-grow: 1;                 /* Allows the content to grow and fill available space */
+  overflow-y: auto;             /* Allows vertical scrolling when needed */
+  max-height: 100%;             /* Ensures it won't exceed the parent's height */
+  scrollbar-width: none;        /* Hides scrollbar in Firefox */
+  -ms-overflow-style: none;     /* Hides scrollbar in Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.scrollable-content::-webkit-scrollbar {
+  display: none;
 }
 
 footer {
