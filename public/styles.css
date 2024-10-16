@@ -25,9 +25,12 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid #333;
-  font-family: "Roboto", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 
 .nav {
@@ -114,6 +117,7 @@ body {
   flex-direction: column;
   max-height: 500px;
   font-size: .8rem;
+  cursor: pointer;
 }
 
 .card:hover .book-cover{
@@ -308,6 +312,97 @@ button:active {
 /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
 .scrollable-content::-webkit-scrollbar {
   display: none;
+}
+
+.bookshelf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.bookshelf-header > h1 {
+  margin: 15px 0 10px 0;
+}
+
+.sorts {
+  display: flex;
+  gap: 10px;
+}
+
+.sort-options {
+  margin-top: 9px;
+  padding: 8px; /* Add padding to give space around the text */
+  font-size: 14px;
+  text-align: center; /* Center the text */
+  appearance: none; /* Remove default styling (Webkit) */
+  -webkit-appearance: none; /* Remove default styling (Safari) */
+  -moz-appearance: none; /* Remove default styling (Firefox) */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><polygon points="0,0 5,5 10,0" fill="black"/></svg>') no-repeat right 25px center; 
+  background-size: 10px 5px; /* Size of the custom arrow */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+.genre-width {
+  width: 140px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><polygon points="0,0 5,5 10,0" fill="black"/></svg>') no-repeat right 35px center; 
+}
+
+.sort-width {
+  width: 100px;
+}
+
+select option {
+  text-align: center;
+}
+
+.new-btn {
+  margin-top: 9px;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  color: #fff;
+  border: 1px solid #197935;
+  background-color: #1f883d;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.new-btn:hover {
+  background-color: #1c8139;
+}
+
+.search-result {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+}
+
+.search-text {
+  margin: 0 0 1.2rem 0;
+}
+
+.clear-filter {
+  text-decoration: none;
+  color: #59636e;
+}
+
+.clear-filter:hover {
+  color: #007BFF;
 }
 
 footer {

@@ -1,5 +1,5 @@
 import express from "express";
-import axios from "axios";
+import axios, { all } from "axios";
 import bodyParser from "body-parser";
 import pg from "pg";
 
@@ -20,12 +20,17 @@ const db = new pg.Client({
 });
 db.connect();
 
+//Variables
 let featured = [];
 let random = [];
 let latest = [];
 let invalidISBN = "";
 let specifiedBook = [];
-let currentID = 0;
+let allBooks = [];
+let sortOption = "";
+let allGenres = [];
+let selectedGenre = "";
+let sorted = "yes";
 
 async function getFeatured() {
   try {
@@ -53,12 +58,52 @@ async function getLatest() {
   } 
 };
 
+async function getAllBooks() {
+  try {
+    const result = await db.query("SELECT * FROM books ORDER BY date_read DESC;");
+    allBooks = result.rows;
+  } catch (err) {
+    console.error(err);
+  } 
+};
+
+async function sortBooks() {
+  if (sortOption === "date") {
+    allBooks.sort((a, b) => new Date(b.date_read) - new Date(a.date_read))
+  } else if (sortOption === "title") {
+    allBooks.sort((a, b) => {
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
+      return 0; // equal titles
+    });
+  } else if (sortOption === "rating") {
+    allBooks.sort((a, b) => b.rating - a.rating);
+  }
+};
+
+async function getGenres() {
+  try {
+    const result = await db.query("SELECT DISTINCT genre from books;")
+    allGenres = result.rows;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+async function getBooksByGenre() {
+  try {
+    const result = await db.query("SELECT * from books WHERE genre = $1 ORDER BY date_read DESC", [ selectedGenre ]);
+    allBooks = result.rows;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 //GET index file
 app.get("/", async (req, res) => {
   await getFeatured();
   await randomBook();
   await getLatest();
-
   res.render("index.ejs",
     { 
       lucky: random,
@@ -68,12 +113,11 @@ app.get("/", async (req, res) => {
     });
 });
 
-//GET navigate to add book
+//GET navigate to add book if isbn is invalid
 app.get("/#add-book", async (req, res) => {
   await getFeatured();
   await randomBook();
   await getLatest();
-
   res.render("index.ejs",
     { 
       lucky: random,
@@ -83,7 +127,7 @@ app.get("/#add-book", async (req, res) => {
     });
 });
 
-//POST new book
+//POST new book journal
 app.post("/add", async (req, res) => {
   const isbn = req.body.isbn;
   const title = req.body.title;
@@ -93,12 +137,10 @@ app.post("/add", async (req, res) => {
   const rating = req.body.rating;
   const review = req.body.review;
   const notes = req.body.notes;
-
   try {
     //GET book cover from API
     const result = await axios.get(`https://bookcover.longitood.com/bookcover/${isbn}`);
     const img_URL = result.data.url;
-
     //INSERT data
     try {
       await db.query("INSERT INTO books (isbn, title, author, genre, img_URL, date_Read, rating, review, notes)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);", [ isbn, title, author, genre, img_URL, date, rating, review, notes ]);
@@ -114,7 +156,7 @@ app.post("/add", async (req, res) => {
   }
 });
 
-//GET a specified book by id
+//GET specific book journal by id
 app.get("/journal/:id", async (req, res) => {
   const rawId = req.params.id.trim();
   const id = parseInt(rawId, 10); 
@@ -156,7 +198,7 @@ app.get("/edit.ejs", async (req, res) => {
   );
 });
 
-//UPDATE book data
+//UPDATE book journal
 app.post("/modify", async (req, res) => {
   const isbn = req.body.isbn;
   const title = req.body.title;
@@ -167,12 +209,10 @@ app.post("/modify", async (req, res) => {
   const review = req.body.review;
   const notes = req.body.notes;
   const id = specifiedBook.id
-
   try {
     //GET book cover from API
     const result = await axios.get(`https://bookcover.longitood.com/bookcover/${isbn}`);
     const img_URL = result.data.url;
-
     //UPDATE data
     try {
       await db.query("UPDATE books set isbn = $1, title = $2, author = $3, genre = $4, img_URL = $5, date_Read = $6, rating = $7, review = $8, notes = $9 WHERE id = $10;", [ isbn, title, author, genre, img_URL, date, rating, review, notes, id ]);
@@ -188,9 +228,9 @@ app.post("/modify", async (req, res) => {
   }
 });
 
+//DELETE a book journal
 app.post("/delete/:id", async (req, res) => {
   const id = specifiedBook.id;
-
   try {
     await db.query("DELETE FROM books WHERE id = $1", [id]);
     res.redirect("/");
@@ -199,6 +239,62 @@ app.post("/delete/:id", async (req, res) => {
     res.status(500).json({ message: "Error deleting post" });
   }
 });
+
+//GET books.ejs
+app.get("/books.ejs", async (req, res) => {
+  await getAllBooks();
+  await getGenres();
+  res.render("books.ejs", 
+    {
+      books: allBooks,
+      genres: allGenres
+    }
+  );
+});
+
+//POST sort books
+app.post("/sort", async (req, res) => {
+  sortOption = req.body.sort;
+  await sortBooks();
+  await getGenres();
+  const sortedBooksCount = allBooks.length;
+  if (selectedGenre === "") {
+    res.render("books.ejs", 
+      {
+        books: allBooks,
+        genres: allGenres,
+      }
+    );
+  } else {
+    res.render("books.ejs", 
+      {
+        books: allBooks,
+        genres: allGenres,
+        theGenre: selectedGenre,
+        booksCount: sortedBooksCount,
+        theSort: sortOption
+      }
+    );
+  }
+});
+
+//POST sort by genre
+app.post("/genre", async (req, res) => {
+  selectedGenre = req.body.genre;
+  await getGenres();
+  await getBooksByGenre();
+  await sortBooks();
+  const sortedBooksCount = allBooks.length;
+  res.render("books.ejs", 
+    {
+      books: allBooks,
+      genres: allGenres,
+      theGenre: selectedGenre,
+      booksCount: sortedBooksCount,
+      theSort: sortOption
+    }
+  );
+})
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
