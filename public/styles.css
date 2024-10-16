@@ -64,13 +64,14 @@ body {
 .home {
   display: flex;
   height: 40vh;
+  border-bottom: 1px solid #ccc;
 }
 
-.title {
+.margin-random {
   margin: 30px 0 0 0;
 }
 
-.sub-title {
+.sub-head {
   color: #717171;
   font-weight: 300;
 }
@@ -107,8 +108,9 @@ body {
 .bookshelf {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 60px;
+  padding-bottom: 20px;
   gap: 45px;
+  border-bottom: 1px solid #ccc;
 }
 
 .card {
@@ -404,6 +406,86 @@ select option {
 .clear-filter:hover {
   color: #007BFF;
 }
+
+/* About Page Container */
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 300;
+}
+
+/* Title Section */
+.about-title {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.highlight {
+  color: #4A90E2;
+}
+
+.about-intro {
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+/* Section Styling */
+.about-section {
+  margin-top: 40px;
+}
+
+.about-section h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Content Layout */
+.about-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about-text {
+  flex: 1;
+  padding-right: 20px;
+  font-size: 1.1em;
+}
+
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* List Section */
+.about-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 1.1em;
+}
+
+.about-list li {
+  margin-bottom: 10px;
+  line-height: 1.6em;
+}
+
+/* Philosophy Section */
+.philosophy-text {
+  font-size: 1.1em;
+}
+
 
 footer {
   color: #333;

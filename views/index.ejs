@@ -2,7 +2,7 @@
 
     <!-- HOME -->
     <% if (locals.lucky.genre) {%>
-      <h1 class="title">Random. <span class="sub-title">Displays a book at random.</span></h1>
+      <h1 class="margin-random">Random. <span class="sub-head">Displays a book at random.</span></h1>
       <!-- RANDOM BOOK -->
       <section class="home">
         <div class="random-details">
@@ -22,7 +22,7 @@
 
     <!-- BOOKSHELF -->
     <% if (locals.featuredBooks[0]) {%>
-      <h1>Featured. <span class="sub-title">I highly recommend these books, 10/10.</span></h1>
+      <h1>Featured. <span class="sub-head">Books you highly recommend, 10/10.</span></h1>
       <section class="bookshelf">
         <% for(let book of featuredBooks) {%>
           <div class="card">
@@ -41,7 +41,7 @@
 
     <!-- LATEST READ -->
     <% if (locals.latestBooks[0]) {%>
-      <h1>Latest. <span class="sub-title">The latest books I read.</span></h1>
+      <h1>Latest. <span class="sub-head">The latest books you read.</span></h1>
       <section class="bookshelf">
         <% for(let book of latestBooks) {%>
           <div class="card">
@@ -59,7 +59,7 @@
     <% } else {}; %>
 
     <!-- ADD BOOK -->
-    <h1>Add a new book. <span class="sub-title">Enter the book you've finished reading.</span></h1>
+    <h1>Add a new book journal. <span class="sub-head">Enter the book you've finished reading.</span></h1>
     <section class="new-book" id="add-book">
       <div class="form-container">
         <h1 class="form-title">New Book</h1>

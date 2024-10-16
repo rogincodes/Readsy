@@ -99,7 +99,7 @@ async function getBooksByGenre() {
   }
 }
 
-//GET index file
+//GET to home page
 app.get("/", async (req, res) => {
   await getFeatured();
   await randomBook();
@@ -156,7 +156,7 @@ app.post("/add", async (req, res) => {
   }
 });
 
-//GET specific book journal by id
+//GET to specific book journal by id
 app.get("/journal/:id", async (req, res) => {
   const rawId = req.params.id.trim();
   const id = parseInt(rawId, 10); 
@@ -178,7 +178,7 @@ app.get("/journal/:id", async (req, res) => {
   } 
 });
 
-//GET edit.ejs
+//GET to edit page
 app.get("/edit.ejs", async (req, res) => {
   const dateTimeString = specifiedBook.date_read;
   let dateOnly;
@@ -240,7 +240,7 @@ app.post("/delete/:id", async (req, res) => {
   }
 });
 
-//GET books.ejs
+//GET to books page
 app.get("/books.ejs", async (req, res) => {
   await getAllBooks();
   await getGenres();
@@ -294,7 +294,12 @@ app.post("/genre", async (req, res) => {
       theSort: sortOption
     }
   );
-})
+});
+
+//GET to about page
+app.get("/about.ejs", async (req, res) => {
+  res.render("about.ejs");
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
