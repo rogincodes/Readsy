@@ -244,6 +244,7 @@ app.post("/delete/:id", async (req, res) => {
 app.get("/books.ejs", async (req, res) => {
   await getAllBooks();
   await getGenres();
+  selectedGenre = "";
   res.render("books.ejs", 
     {
       books: allBooks,

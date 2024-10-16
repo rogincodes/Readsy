@@ -486,6 +486,29 @@ select option {
   font-size: 1.1em;
 }
 
+/* Contact Link Styling */
+.about-contact-intro {
+  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.6em;
+}
+
+.contact-link {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #4A90E2;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.contact-link:hover {
+  background-color: #357ABD;
+}
+
 
 footer {
   color: #333;
