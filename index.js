@@ -83,7 +83,7 @@ async function sortBooks() {
 
 async function getGenres() {
   try {
-    const result = await db.query("SELECT DISTINCT genre from books;")
+    const result = await db.query("SELECT DISTINCT genre from books ORDER BY genre ASC;")
     allGenres = result.rows;
   } catch (err) {
     console.error(err);
@@ -126,9 +126,9 @@ app.get("/", async (req, res) => {
 //POST new book journal
 app.post("/add", async (req, res) => {
   const isbn = req.body.isbn;
-  const title = req.body.title;
-  const author = req.body.author;
-  const genre = req.body.genre;
+  const title = req.body.title.trim();
+  const author = req.body.author.trim();
+  const genre = req.body.genre.trim();
   const date = req.body.dateRead;
   const rating = req.body.rating;
   const review = req.body.review;
@@ -198,9 +198,9 @@ app.get("/edit.ejs", async (req, res) => {
 //UPDATE book journal
 app.post("/modify", async (req, res) => {
   const isbn = req.body.isbn;
-  const title = req.body.title;
-  const author = req.body.author;
-  const genre = req.body.genre;
+  const title = req.body.title.trim();
+  const author = req.body.author.trim();
+  const genre = req.body.genre.trim();
   const date = req.body.dateRead;
   const rating = req.body.rating;
   const review = req.body.review;
@@ -214,7 +214,7 @@ app.post("/modify", async (req, res) => {
     try {
       await db.query("UPDATE books set isbn = $1, title = $2, author = $3, genre = $4, img_URL = $5, date_Read = $6, rating = $7, review = $8, notes = $9 WHERE id = $10;", [ isbn, title, author, genre, img_URL, date, rating, review, notes, id ]);
       invalidISBN = "";
-      res.redirect("/");
+      res.redirect("/books.ejs");
     } catch (err) {
       console.error(err);
     }

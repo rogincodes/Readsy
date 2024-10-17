@@ -10,10 +10,10 @@
           <h1><%= lucky.title %></h1>
           <h3><%= lucky.author %></h3>
           <h5>Recommendation: <%= lucky.rating %>/10</h5>
-          <button class="buttons view-notes">View Notes</button>
+          <button class="buttons view-book">View Book</button>
         </div>
         <div class="random-book">
-          <a href="/journal/<%= lucky.id %>"><img src="<%= lucky.img_url %>" alt="Me Before You" class="random-cover"></a>
+          <a href="/journal/<%= lucky.id %>"><img src="<%= lucky.img_url %>" alt="<%= lucky.title %>" class="random-cover"></a>
         </div>
       </section>
     <% } else {%>
@@ -27,7 +27,7 @@
         <% for(let book of featuredBooks) {%>
           <div class="card">
             <a href="/journal/<%=book.id%>" >
-              <img src="<%= book.img_url %>" alt="" class="book-cover">
+              <img src="<%= book.img_url %>" alt="<%= book.title %>" class="book-cover">
               <div class="book-details">
               <h1 class="limited-text"><%= book.title %></h1>
               <h3><%= book.author %></h3>
@@ -46,7 +46,7 @@
         <% for(let book of latestBooks) {%>
           <div class="card">
             <a href="/journal/<%= book.id %>" >
-              <img src="<%= book.img_url %>" alt="" class="book-cover">
+              <img src="<%= book.img_url %>" alt="<%= book.title %>" class="book-cover">
               <div class="book-details">
               <h1 class="limited-text"><%= book.title %></h1>
               <h3><%= book.author %></h3>
@@ -93,7 +93,7 @@
             <div class="form-group">
               <div>
                 <label for="rating">Rating:</label>
-                <select id="rating" name="rating" required>
+                <select class="rating" id="rating" name="rating" required>
                   <option value="10">10</option>
                   <option value="9">9</option>
                   <option value="8">8</option>

@@ -14,6 +14,7 @@ html, body {
   box-sizing: border-box;
 }
 
+/* General Styling */
 body {
   margin: 0;
   display: grid;
@@ -31,6 +32,40 @@ body {
   flex: 1;
 }
 
+.head {
+  margin: 0;
+  padding: 25px 0 20px 0;
+}
+
+.sub-head {
+  color: #717171;
+  font-weight: 300;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  color: #333;
+  border-radius: 5px;
+  border: 1px solid #5a5a5a;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  color: #fff;
+  background-color: #ff8c00;
+  border: 1px solid #ff8c00;
+}
+
+button:active {
+  color: #fff;
+  background-color: #ff8000;
+  border: 1px solid #ff8000;
+}
+
+/* Header Styling */
 .header {
   height: 60px;
   display: grid;
@@ -44,6 +79,7 @@ body {
     "wdth" 100;
 }
 
+/* navigation */
 .nav {
   display: flex;
   align-items: center;
@@ -72,6 +108,7 @@ body {
   align-items: center;
 }
 
+/* Random Book Section Styling */
 .home {
   display: flex;
   height: 40vh;
@@ -80,16 +117,6 @@ body {
 
 .margin-random {
   margin: 30px 0 0 0;
-}
-
-.head {
-  margin: 0;
-  padding: 25px 0 20px 0;
-}
-
-.sub-head {
-  color: #717171;
-  font-weight: 300;
 }
 
 .random-details {
@@ -115,12 +142,13 @@ body {
   height: 250px;
 }
 
-.view-notes {
+.view-book {
   border-radius: 20px;
   width: 160px;
   margin-top: 10px;
 }
 
+/* Bookshelf Section Styling */
 .bookshelf {
   display: flex;
   flex-wrap: wrap;
@@ -129,6 +157,7 @@ body {
   border-bottom: 1px solid #ccc;
 }
 
+/* card */
 .card {
   flex-basis: 17%;
   display: flex;
@@ -142,11 +171,16 @@ body {
   transform: scale(1.028);
 }
 
+.card:hover .limited-text{
+  text-decoration: underline;
+}
+
 .card > a {
   color: #333;
   text-decoration: none;
 }
 
+/* book details */
 .book-cover {
   display: flex;
   height: 300px;
@@ -175,12 +209,14 @@ body {
   text-overflow: ellipsis;   /* Adds '...' for truncated text */
 }
 
+/* New Book Page Styling */
 .new-book {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
+/* form */
 .form-container {
   flex-basis: 100%;
   max-width: 100%;
@@ -194,7 +230,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  
 }
 
 .form-group {
@@ -216,6 +251,15 @@ label {
   margin-bottom: 5px;
 }
 
+.rating {
+  padding: 10px;
+}
+
+select option {
+  text-align: center;
+}
+
+/* input */
 input, textarea {
   width: 100%;
   padding: 10px;
@@ -237,32 +281,12 @@ textarea:focus {
   font-size: 0.9em;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  color: #333;
-  border-radius: 5px;
-  border: 1px solid #5a5a5a;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  color: #fff;
-  background-color: #5a5a5a;
-}
-
-button:active {
-  color: #fff;
-  background-color: #333;
-}
-
 .add-button {
   margin-top: 20px;
   font-weight: 600;
 }
 
+/* Journal Page Styling */
 .journal {
   display: flex;
   height: 100vh;
@@ -278,6 +302,7 @@ button:active {
   overflow: hidden;
 }
 
+/* journal buttons */
 .edit-delete-btn {
   display: flex;
   justify-content: center;
@@ -309,6 +334,7 @@ button:active {
   background-color: rgb(222, 0, 0);
 }
 
+/* journal details */
 .journal-details {
   flex-basis: 75%;
   display: flex;
@@ -333,6 +359,7 @@ button:active {
   display: none;
 }
 
+/* Books Page Styling */
 .bookshelf-header {
   display: flex;
   justify-content: space-between;
@@ -345,6 +372,7 @@ button:active {
   margin: 15px 0 10px 0;
 }
 
+/* sorts */
 .sorts {
   display: flex;
   gap: 10px;
@@ -374,10 +402,6 @@ button:active {
   width: 100px;
 }
 
-select option {
-  text-align: center;
-}
-
 .new-btn {
   margin-top: 9px;
   width: 90px;
@@ -400,6 +424,7 @@ select option {
   background-color: #1c8139;
 }
 
+/* search text */
 .search-result {
   border-bottom: 1px solid #ccc;
   margin-bottom: 20px;
@@ -424,7 +449,7 @@ select option {
   color: #007BFF;
 }
 
-/* About Page Container */
+/* About Page Styling */
 .about-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -432,7 +457,6 @@ select option {
   font-weight: 300;
 }
 
-/* Title Section */
 .about-title {
   text-align: center;
   font-size: 2.5em;
@@ -452,7 +476,6 @@ select option {
   max-width: 700px;
 }
 
-/* Section Styling */
 .about-section {
   margin-top: 40px;
 }
@@ -463,7 +486,6 @@ select option {
   color: #333;
 }
 
-/* Content Layout */
 .about-content {
   display: flex;
   align-items: center;
@@ -486,7 +508,6 @@ select option {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* List Section */
 .about-list {
   list-style: none;
   padding-left: 0;
@@ -498,12 +519,11 @@ select option {
   line-height: 1.6em;
 }
 
-/* Philosophy Section */
 .philosophy-text {
   font-size: 1.1em;
 }
 
-/* Contact Link Styling */
+/* contact link */
 .about-contact-intro {
   font-size: 1.1em;
   color: #333;
@@ -526,6 +546,7 @@ select option {
   background-color: #357ABD;
 }
 
+/* Contact Page Styling */
 .contact-section-container {
   color: #333;
   max-width: 900px;
@@ -580,7 +601,7 @@ select option {
   color: #ff8c00;
 }
 
-
+/* Footer Styling */
 footer {
   color: #333;
   text-align: center;
