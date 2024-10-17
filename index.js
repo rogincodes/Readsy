@@ -34,7 +34,7 @@ let booksByAuthor = [];
 
 async function getFeatured() {
   try {
-    const result = await db.query("SELECT * FROM books WHERE rating = 10 LIMIT 10;");
+    const result = await db.query("SELECT * FROM books WHERE rating = 10 ORDER BY title LIMIT 10;");
     featured = result.rows;
   } catch (err) {
     console.err(err);

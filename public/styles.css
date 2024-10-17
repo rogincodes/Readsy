@@ -85,7 +85,7 @@ button:active {
   align-items: center;
   margin: 0;
   padding: 0;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .nav li {
@@ -131,6 +131,10 @@ button:active {
   margin: 0 0 0.2rem 0;
 }
 
+.random-genre, .random-author, .random-recommendation {
+  font-weight: 300;
+}
+
 .random-book {
   flex-basis: 35%;
   display: flex;
@@ -139,7 +143,15 @@ button:active {
 }
 
 .random-cover {
-  height: 250px;
+  height: 240px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.random-cover:hover {
+  transform: scale(1.028);
 }
 
 .view-book {
@@ -200,6 +212,10 @@ button:active {
   margin: .3rem 0 0 0;
 }
 
+.book-author, .recommendation {
+  font-weight: 400;
+}
+
 .limited-text {
   display: -webkit-box;
   -webkit-line-clamp: 2;     /* For WebKit browsers */
@@ -224,6 +240,7 @@ button:active {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
 }
 
 .group-container {
@@ -364,12 +381,11 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ccc;
   margin-bottom: 20px;
 }
 
 .bookshelf-header > h1 {
-  margin: 15px 0 10px 0;
+  margin: 15px 0 0 0;
 }
 
 /* sorts */
@@ -379,7 +395,7 @@ textarea:focus {
 }
 
 .sort-options {
-  margin-top: 9px;
+  margin-top: 20px;
   padding: 8px; /* Add padding to give space around the text */
   font-size: 14px;
   text-align: center; /* Center the text */
@@ -403,7 +419,7 @@ textarea:focus {
 }
 
 .new-btn {
-  margin-top: 9px;
+  margin-top: 20px;
   width: 90px;
   display: flex;
   justify-content: center;
@@ -426,6 +442,8 @@ textarea:focus {
 
 /* search text */
 .search-result {
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   margin-bottom: 20px;
   font-family: "Roboto", sans-serif;
@@ -465,7 +483,7 @@ textarea:focus {
 }
 
 .highlight {
-  color: #4A90E2;
+  color: #ff8400;
 }
 
 .about-intro {
@@ -558,7 +576,7 @@ textarea:focus {
 
 .contactLabel {
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
   margin: 0px;
   color: #ff8400;
 }
@@ -608,5 +626,4 @@ footer {
   padding: 1em 0;
   font-size: 1.2rem;
   border-top: 1px solid;
-  margin-top: 25px;
 }
