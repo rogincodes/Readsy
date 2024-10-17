@@ -302,6 +302,11 @@ app.get("/about.ejs", async (req, res) => {
   res.render("about.ejs");
 });
 
+//GET to contact page
+app.get("/contact.ejs", async (req, res) => {
+  res.render("contact.ejs");
+})
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
