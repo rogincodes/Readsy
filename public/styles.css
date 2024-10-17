@@ -441,8 +441,23 @@ textarea:focus {
   background-color: #1c8139;
 }
 
+/* search input */
+.search-container {
+  margin-top: 20px;
+  width: 300px;
+}
+
+.search-input {
+  padding: 8px;
+}
+
 /* search text */
-.search-result {
+.hidden {
+  display: none;
+}
+
+#search-pane {
+  display: none;
   padding-top: 20px;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
@@ -450,7 +465,6 @@ textarea:focus {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 15px;
-  display: flex;
   justify-content: space-between;
   color: #333;
 }

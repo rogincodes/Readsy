@@ -1,4 +1,4 @@
-import express from "express";
+import express, { query } from "express";
 import axios, { all } from "axios";
 import bodyParser from "body-parser";
 import pg from "pg";
@@ -27,10 +27,11 @@ let latest = [];
 let invalidISBN = "";
 let specifiedBook = [];
 let allBooks = [];
-let sortOption = "";
+let sortOption = "date";
 let allGenres = [];
 let selectedGenre = "";
 let booksByAuthor = [];
+let userQuery = "";
 
 async function getFeatured() {
   try {
@@ -45,7 +46,6 @@ async function randomBook() {
   if (featured != 0) {  
     const num = Math.floor(Math.random() * featured.length);
     random = featured[num];
-    console.log(num);
   } else {};
 };
 
@@ -91,13 +91,10 @@ async function getGenres() {
 };
 
 async function getBooksByGenre() {
-  try {
-    const result = await db.query("SELECT * from books WHERE genre = $1 ORDER BY date_read DESC", [ selectedGenre ]);
-    allBooks = result.rows;
-  } catch (err) {
-    console.error(err);
-  }
-}
+  const genre = selectedGenre ? selectedGenre.toLowerCase() : '';
+  const results = allBooks.filter(book => book.genre.toLowerCase().includes(genre));
+  allBooks = results;
+};
 
 async function getBooksByAuthor() {
   const author = specifiedBook.author;
@@ -244,6 +241,7 @@ app.get("/books.ejs", async (req, res) => {
   selectedGenre = "";
   res.render("books.ejs", 
     {
+      typed: userQuery,
       books: allBooks,
       genres: allGenres
     }
@@ -254,44 +252,39 @@ app.get("/books.ejs", async (req, res) => {
 app.post("/sort", async (req, res) => {
   sortOption = req.body.sort;
   await sortBooks();
-  await getGenres();
-  const sortedBooksCount = allBooks.length;
-  if (selectedGenre === "") {
-    res.render("books.ejs", 
-      {
-        books: allBooks,
-        genres: allGenres,
-      }
-    );
-  } else {
-    res.render("books.ejs", 
-      {
-        books: allBooks,
-        genres: allGenres,
-        theGenre: selectedGenre,
-        booksCount: sortedBooksCount,
-        theSort: sortOption
-      }
-    );
-  }
+  res.json({
+    books: allBooks,
+    sort: sortOption,
+    genre: selectedGenre
+  });
 });
 
 //POST sort by genre
 app.post("/genre", async (req, res) => {
   selectedGenre = req.body.genre;
-  await getGenres();
+  await getAllBooks();
+  await getBooksByGenre();
+  const results = allBooks;
+  res.json({
+    books: allBooks,
+    sort: sortOption,
+    genre: selectedGenre
+  });
+});
+
+//GET search book
+app.get('/search', async (req, res) => {
+  await getAllBooks();
   await getBooksByGenre();
   await sortBooks();
-  const sortedBooksCount = allBooks.length;
-  res.render("books.ejs", 
-    {
-      books: allBooks,
-      genres: allGenres,
-      theGenre: selectedGenre,
-      booksCount: sortedBooksCount,
-      theSort: sortOption
-    }
-  );
+  const query = req.query.q ? req.query.q.toLowerCase() : '';
+  const results = allBooks.filter(book => book.title.toLowerCase().includes(query));
+  allBooks = results;
+  res.json({
+    books: allBooks,
+    sort: sortOption,
+    genre: selectedGenre
+  });
 });
 
 //GET to about page
@@ -311,7 +304,7 @@ app.get("/new.ejs", async (req, res) => {
       isbnError: invalidISBN,
     }
   );
-})
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

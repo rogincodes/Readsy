@@ -5,16 +5,25 @@
     <div class="bookshelf-header">
       <h1>BOOKSHELF</h1>
       <div class="sorts">
-        <form action="/genre" method="POST" id="genre-form">
-          <select class="sort-options genre-width" name="genre" onchange="document.getElementById('genre-form').submit();">
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search for books..."
+            class="search-input"
+            oninput="showSearchText()"
+          />
+        </div>
+        <form id="genre-form">
+          <select class="sort-options genre-width" name="genre" id="genre-select">
             <option value="" selected hidden>Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
             <% for (let list of genres) {%>
               <option value="<%= list.genre %>"><%= list.genre %></option>
             <% } %>
           </select>
         </form>
-        <form action="/sort" method="POST" id="sort-form">
-          <select class="sort-options sort-width" name="sort" onchange="document.getElementById('sort-form').submit();">
+        <form id="sort-form">
+          <select class="sort-options sort-width" name="sort" id="sort-select">
             <option value="" selected hidden>Sort&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
             <option value="date">Latest read</option>
             <option value="title">Title</option>
@@ -24,31 +33,32 @@
         <a href="/new.ejs"class="new-btn">New Book</a>
       </div>
     </div>
-
-    <% if (locals.booksCount) { %>
-      <div class="search-result">
-        <p class="search-text"><strong><%= booksCount %></strong> results for books with <strong><%= theGenre %></strong> genre sorted by <strong><%= theSort %></strong></p>
-        <div>
-          <a href="/books.ejs" class="clear-filter"><i class="fa fa-times-circle"></i></i>&nbsp;&nbsp;Clear filter</a>
-        </div>
+    
+    <!-- SEARCH TEXT -->
+    <div id="search-pane">
+      <p id="search-text" class="search-text"></p>
+      <div>
+        <a href="/books.ejs" class="clear-filter"><i class="fas fa-times-square"></i>&nbsp;&nbsp;Clear filter</a>
       </div>
-    <% } else {}; %>
+    </div>
 
     <!-- BOOKSHELF -->
-    <section class="bookshelf">
+    <section class="bookshelf" id="bookshelf">
       <% for(let book of books) {%>
         <div class="card">
-          <a href="/journal/<%=book.id%>" >
+          <a href="/journal/<%=book.id%>">
             <img src="<%= book.img_url %>" alt="" class="book-cover">
             <div class="book-details">
-            <h1 class="limited-text"><%= book.title %></h1>
-            <h3><%= book.author %></h3>
-            <h4>Recomendation: <%= book.rating %>/10</h4>
-          </div>
+              <h1 class="limited-text"><%= book.title %></h1>
+              <h3 class="book-author"><%= book.author %></h3>
+              <h4 class="recommendation">Recommendation: <%= book.rating %>/10</h4>
+            </div>
           </a>  
         </div>
       <% } %>
     </section>
   <% } else {}; %>
+
+  <script src="/script.js"></script>
 
 <%- include("partials/footer.ejs")  %>
