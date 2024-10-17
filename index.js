@@ -51,7 +51,7 @@ async function randomBook() {
 
 async function getLatest() {
   try {
-    const result = await db.query("SELECT * FROM books ORDER BY date_read DESC LIMIT 3;");
+    const result = await db.query("SELECT * FROM books ORDER BY date_read DESC LIMIT 10;");
     latest = result.rows;
   } catch (err) {
     console.err(err);
@@ -123,20 +123,6 @@ app.get("/", async (req, res) => {
     });
 });
 
-//GET navigate to add book if isbn is invalid
-app.get("/#add-book", async (req, res) => {
-  await getFeatured();
-  await randomBook();
-  await getLatest();
-  res.render("index.ejs",
-    { 
-      lucky: random,
-      featuredBooks: featured,
-      latestBooks: latest,
-      isbnError: invalidISBN,
-    });
-});
-
 //POST new book journal
 app.post("/add", async (req, res) => {
   const isbn = req.body.isbn;
@@ -155,14 +141,14 @@ app.post("/add", async (req, res) => {
     try {
       await db.query("INSERT INTO books (isbn, title, author, genre, img_URL, date_Read, rating, review, notes)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);", [ isbn, title, author, genre, img_URL, date, rating, review, notes ]);
       invalidISBN = "";
-      res.redirect("/");
+      res.redirect("/books.ejs");
     } catch (err) {
       console.error(err);
     }
   } catch (err) {
     console.error(err);
     invalidISBN = "Invalid input: Please use ISBN-13.";
-    res.redirect("/#add-book");
+    res.redirect("/new.ejs");
   }
 });
 
@@ -316,6 +302,15 @@ app.get("/about.ejs", async (req, res) => {
 //GET to contact page
 app.get("/contact.ejs", async (req, res) => {
   res.render("contact.ejs");
+});
+
+//GET to new book page
+app.get("/new.ejs", async (req, res) => {
+  res.render("new.ejs",
+    { 
+      isbnError: invalidISBN,
+    }
+  );
 })
 
 app.listen(port, () => {

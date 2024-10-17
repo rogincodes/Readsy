@@ -22,7 +22,7 @@
 
     <!-- BOOKSHELF -->
     <% if (locals.featuredBooks[0]) {%>
-      <h1>Featured. <span class="sub-head">Books you highly recommend, 10/10.</span></h1>
+      <h1 id="featured" class="head">Featured. <span class="sub-head">Books you highly recommend, 10/10.</span></h1>
       <section class="bookshelf">
         <% for(let book of featuredBooks) {%>
           <div class="card">
@@ -41,7 +41,7 @@
 
     <!-- LATEST READ -->
     <% if (locals.latestBooks[0]) {%>
-      <h1>Latest. <span class="sub-head">The latest books you read.</span></h1>
+      <h1 id="latest" class="head">Latest. <span class="sub-head">The latest books you read.</span></h1>
       <section class="bookshelf">
         <% for(let book of latestBooks) {%>
           <div class="card">
@@ -59,8 +59,8 @@
     <% } else {}; %>
 
     <!-- ADD BOOK -->
-    <h1>Add a new book journal. <span class="sub-head">Enter the book you've finished reading.</span></h1>
-    <section class="new-book" id="add-book">
+    <h1 id="add-book" class="head">Add a new book. <span class="sub-head">Enter the book you've finished reading.</span></h1>
+    <section class="new-book">
       <div class="form-container">
         <h1 class="form-title">New Book</h1>
         <form action="/add" method="POST">

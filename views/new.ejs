@@ -1,0 +1,66 @@
+<%- include("partials/header.ejs")  %>
+
+  <!-- ADD BOOK -->
+  <h1 id="add-book" class="head">Add a new book. <span class="sub-head">Enter the book you've finished reading.</span></h1>
+  <section class="new-book">
+    <div class="form-container">
+      <h1 class="form-title">New Book</h1>
+      <form action="/add" method="POST">
+        <!-- LEFT GROUP -->
+        <div class="group-container">
+          <div class="form-group">
+            <div>
+              <label for="isbn">ISBN</label>
+              <input type="text" id="isbn" name="isbn" placeholder="Use ISBN-13" required>
+              <span class="error"><%= isbnError  %></span>
+            </div>
+            <div>
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title" placeholder="Book Title" required>  
+            </div>
+            <div>
+              <label for="author">Author</label>
+              <input type="text" id="text" name="author" placeholder="Book Author" required>  
+            </div>
+            <div>
+              <label for="genre">Genre</label>
+              <input type="text" id="genre" name="genre" placeholder="Book Genre" required>  
+            </div>
+            <div>
+              <label for="dateRead">Date Read</label>
+              <input type="date" id="dateRead" name="dateRead" required>
+            </div>
+          </div>
+          <!-- RIGHT GROUP -->
+          <div class="form-group">
+            <div>
+              <label for="rating">Rating:</label>
+              <select id="rating" name="rating" required>
+                <option value="10">10</option>
+                <option value="9">9</option>
+                <option value="8">8</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
+            </div>
+            <div>
+              <label for="review">Review</label>
+              <textarea id="review" name="review" placeholder="Your review" rows="5"></textarea>
+            </div>
+            <div>
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" placeholder="Your notes" rows="5"></textarea>
+            </div>
+          </div>            
+        </div>
+        <button type="submit" class="add-button">SUBMIT</button>
+      </form>
+    </div>
+  </section>
+
+<%- include("partials/footer.ejs")  %>
