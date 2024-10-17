@@ -16,7 +16,7 @@
         </div>
         <form id="genre-form">
           <select class="sort-options genre-width" name="genre" id="genre-select">
-            <option value="" selected hidden>Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+            <option value="" selected hidden>Genre</option>
             <% for (let list of genres) {%>
               <option value="<%= list.genre %>"><%= list.genre %></option>
             <% } %>
@@ -24,7 +24,7 @@
         </form>
         <form id="sort-form">
           <select class="sort-options sort-width" name="sort" id="sort-select">
-            <option value="" selected hidden>Sort&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+            <option value="" selected hidden>Sort</option>
             <option value="date">Latest read</option>
             <option value="title">Title</option>
             <option value="rating">Rating</option>

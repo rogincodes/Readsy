@@ -403,7 +403,7 @@ textarea:focus {
   appearance: none; /* Remove default styling (Webkit) */
   -webkit-appearance: none; /* Remove default styling (Safari) */
   -moz-appearance: none; /* Remove default styling (Firefox) */
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><polygon points="0,0 5,5 10,0" fill="black"/></svg>') no-repeat right 25px center; 
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><polygon points="0,0 5,5 10,0" fill="black"/></svg>') no-repeat right 10px center; 
   background-size: 10px 5px; /* Size of the custom arrow */
   border: 1px solid #ccc; /* Add border */
   border-radius: 8px; /* Rounded corners */
@@ -411,12 +411,12 @@ textarea:focus {
 }
 
 .genre-width {
-  width: 140px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><polygon points="0,0 5,5 10,0" fill="black"/></svg>') no-repeat right 35px center; 
+  width: 170px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><polygon points="0,0 5,5 10,0" fill="black"/></svg>') no-repeat right 10px center; 
 }
 
 .sort-width {
-  width: 100px;
+  width: 125px;
 }
 
 .new-btn {
