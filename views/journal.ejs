@@ -23,10 +23,10 @@
   </section>
 
   <!-- BOOKSHELF -->
-  <% if (locals.featuredBooks[0]) {%>
-    <h1>Other books by <span class="sub-title"><%= book.author %></span></h1>
+  <% if (locals.authorBooks[0]) {%>
+    <h1>Books by <span class="sub-head"><%= book.author %></span></h1>
     <section class="bookshelf">
-      <% for(let book of featuredBooks) {%>
+      <% for(let book of authorBooks) {%>
         <div class="card">
           <a href="/books/<%=book.id%>" >
             <img src="<%= book.img_url %>" alt="" class="book-cover">

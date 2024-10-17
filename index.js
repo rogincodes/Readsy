@@ -30,7 +30,7 @@ let allBooks = [];
 let sortOption = "";
 let allGenres = [];
 let selectedGenre = "";
-let sorted = "yes";
+let booksByAuthor = [];
 
 async function getFeatured() {
   try {
@@ -94,6 +94,16 @@ async function getBooksByGenre() {
   try {
     const result = await db.query("SELECT * from books WHERE genre = $1 ORDER BY date_read DESC", [ selectedGenre ]);
     allBooks = result.rows;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function getBooksByAuthor() {
+  const author = specifiedBook.author;
+  try {
+    const result = await db.query("SELECT * from books WHERE author = $1 ORDER BY date_read DESC", [ author ]);
+    booksByAuthor = result.rows;
   } catch (err) {
     console.error(err);
   }
@@ -167,10 +177,11 @@ app.get("/journal/:id", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM books WHERE id = $1", [ id ]);
     specifiedBook = result.rows[0];
+    await getBooksByAuthor();
     res.render("journal.ejs",
       {
         book: specifiedBook,
-        featuredBooks: featured
+        authorBooks: booksByAuthor,
       }
     );
   } catch (err) {
