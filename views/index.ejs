@@ -2,12 +2,12 @@
 
     <!-- HOME -->
     <% if (locals.lucky.genre) {%>
-      <h1 class="margin-random">Random. <span class="sub-head">Displays a book at random.</span></h1>
+      <h1 class="random-head">Random. <span class="sub-head">Displays a book at random.</span></h1>
       <!-- RANDOM BOOK -->
       <section class="home">
         <div class="random-details">
           <h5 class="random-genre"><%= lucky.genre %></h5>
-          <h1><%= lucky.title %></h1>
+          <a href="/journal/<%= lucky.id %>"><h1 class="random-title"><%= lucky.title %></h1></a>
           <h3 class="random-author"><%= lucky.author %></h3>
           <h5 class="random-recommendation">Recommendation: <%= lucky.rating %>/10</h5>
           <a href="/journal/<%= lucky.id %>"><button class="buttons view-book">View Book</button></a>
@@ -26,7 +26,7 @@
       <section class="bookshelf">
         <% for(let book of featuredBooks) {%>
           <div class="card">
-            <a href="/journal/<%=book.id%>" >
+            <a href="/journal/<%=book.id%>">
               <img src="<%= book.img_url %>" alt="<%= book.title %>" class="book-cover">
                 <div class="book-details">
                 <h1 class="limited-text"><%= book.title %></h1>
@@ -115,7 +115,7 @@
                 </div>
               </div>            
             </div>
-            <button type="submit" class="add-button">SUBMIT</button>
+            <button type="submit" class="submit-button">SUBMIT</button>
           </form>
         </div>
       </section>

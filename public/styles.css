@@ -4,7 +4,8 @@ html {
   font-weight: 800;
   font-style: normal;
   scroll-behavior: smooth;
-  color: #333;
+  color: #373A40;
+  background-color: #EEEEEE;
 }
 
 html, body {
@@ -20,11 +21,12 @@ body {
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1220px 1fr;
+  grid-template-rows: 65px 1fr;
 }
 
 .container {
-  grid-area: 1 / 2 / 2 / 3;
-  min-height: 101%;
+  grid-area: 2 / 2 / 3 / 3;
+  min-height: 100.1%;
   display: flex;
   flex-direction: column;
 }
@@ -36,10 +38,12 @@ body {
 .head {
   margin: 0;
   padding: 25px 0 20px 0;
+  border-top: 1px solid #ccc;
+  font-size: 2.25rem;
 }
 
 .sub-head {
-  color: #717171;
+  color: #686D76;
   font-weight: 300;
 }
 
@@ -56,28 +60,32 @@ button {
 
 button:hover {
   color: #fff;
-  background-color: #ff8c00;
-  border: 1px solid #ff8000;
+  background-color: #DC5F00;
+  border: 1px solid #d25b00;
 }
 
 button:active {
   color: #fff;
-  background-color: #ff8000;
-  border: 1px solid #ff8000;
+  background-color: #d25b00;
+  border: 1px solid #d25b00;
 }
 
-/* Header Styling */
-.header {
-  height: 60px;
+/* Header Section Styling */
+.header-section {
+  grid-area: 1 / 1 / 2 / span 3;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1220px 1fr;
   border-bottom: 1px solid #333;
-  font-family: "Noto Sans", sans-serif;
-  font-optical-sizing: auto;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  background-color: #373A40;
+}
+
+.header-container {
+  grid-area: 1 / 2 / 2 / 3;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* navigation */
@@ -95,7 +103,7 @@ button:active {
 
 .nav li a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   transition: color 0.3s ease-in-out;
 }
 
@@ -103,21 +111,31 @@ button:active {
   color: #ff8c00;
 }
 
-.account {
+.website {
+  color: #ff8c00;
+  font-size: 1.2rem;
+}
+
+.sign-in {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.user {
+  text-decoration: none;
+  color: #fff;
 }
 
 /* Random Book Section Styling */
 .home {
   display: flex;
   height: 40vh;
-  border-bottom: 1px solid #ccc;
 }
 
-.margin-random {
+.random-head {
   margin: 30px 0 0 0;
+  font-size: 2.2rem;
 }
 
 .random-details {
@@ -130,6 +148,16 @@ button:active {
 
 .random-details > * {
   margin: 0 0 0.2rem 0;
+  text-decoration: none;
+}
+
+.random-title {
+  color: #333;
+  margin: 0 0 0.2rem 0;
+}
+
+.random-title:hover {
+  text-decoration: underline;
 }
 
 .random-genre, .random-author, .random-recommendation {
@@ -166,13 +194,12 @@ button:active {
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 20px;
-  gap: 45px;
-  border-bottom: 1px solid #ccc;
+  gap: 35px;
 }
 
 /* card */
 .card {
-  flex-basis: 17%;
+  flex-basis: 17.7%;
   display: flex;
   flex-direction: column;
   max-height: 500px;
@@ -196,7 +223,7 @@ button:active {
 /* book details */
 .book-cover {
   display: flex;
-  height: 300px;
+  height: 315px;
   width: 100%;
   margin: 0;
   transition: transform 0.2s ease-in-out;
@@ -256,6 +283,8 @@ button:active {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
 }
 
 .form-title {
@@ -289,6 +318,11 @@ input, textarea {
   transition: border 0.3s ease;
 }
 
+textarea {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.25;
+}
+
 input:focus,
 textarea:focus {
   border-color: #007BFF;
@@ -299,19 +333,32 @@ textarea:focus {
   font-size: 0.9em;
 }
 
-.add-button {
+.submit-button {
   margin-top: 20px;
   font-weight: 600;
+  color: #fff;
+  background-color: #1f883d;
+  border: 1px solid #197935;
+}
+
+.submit-button:hover {
+  background-color: #1c8139;
+  border: 1px solid #197935;
+}
+
+.submit-button:active {
+  background-color: #197935;
+  border: 1px solid #197935;
 }
 
 /* Journal Page Styling */
-.journal {
+.journal-section {
   display: flex;
   height: 100vh;
   font-size: 18px;
 }
 
-.journal-cover {
+.journal {
   flex-basis: 25%;
   display: flex;
   flex-direction: column;
@@ -320,36 +367,64 @@ textarea:focus {
   overflow: hidden;
 }
 
+.journal-cover {
+  height: 320px;
+  width: 220px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 /* journal buttons */
 .edit-delete-btn {
   display: flex;
   justify-content: center;
-  gap: 10%;
+  gap: 15px;
 }
 
-.edit-delete-btn > a {
-  flex-basis: 45%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #333;
-  width: 100px;
-  height: 40px;
+.no-deco {
   text-decoration: none;
-  border-radius: 20px;
-  border: none;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
+}
+
+.edit-btn, .delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 90px;
   font-weight: 700;
-  font-size: 1rem;
 }
 
 .edit-btn {
-  background-color: #00924e;
+  color: #fff;
+  background-color: #1f883d;
+  border: 1px solid #197935;
+}
+
+.edit-btn:hover {
+  background-color: #1c8139;
+  border: 1px solid #197935;
+}
+
+.edit-btn:active {
+  background-color: #197935;
+  border: 1px solid #197935;
 }
 
 .delete-btn {
-  background-color: rgb(222, 0, 0);
+  color: #fff;
+  background-color: #d1242f;
+  border: 1px solid #8b0820;
+}
+
+.delete-btn:hover {
+  background-color: #a40e26;
+  border: 1px solid #8b0820;
+}
+
+.delete-btn:active {
+  background-color: #8b0820;
+  border: 1px solid #8b0820;
 }
 
 /* journal details */
@@ -362,6 +437,40 @@ textarea:focus {
 .journal-details > * {
   margin: 0;
   padding: 0;
+}
+
+.j-title {
+  font-size: 2.5rem;
+  margin: 32px 0 0 0;
+}
+
+.j-author {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 10px 0;
+}
+
+.j-rating, .j-review, .j-notes {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+.j-genre {
+  margin: 10px 0 0 0;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.j-rating {
+  font-weight: 600;
+  font-size: .9rem;
+  margin: 10px 0 20px 0;
+}
+
+.j-review, .j-notes {
+  line-height: 1.5;
+  font-size: 1rem;
+  white-space: pre-line;
 }
 
 .scrollable-content {
@@ -382,11 +491,12 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-.bookshelf-header > h1 {
-  margin: 15px 0 0 0;
+.shelf-head {
+  font-size: 2.25rem;
+  margin: 20px 0 0 0;
 }
 
 /* sorts */
@@ -396,7 +506,7 @@ textarea:focus {
 }
 
 .sort-options {
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 8px; /* Add padding to give space around the text */
   font-size: 14px;
   text-align: center; /* Center the text */
@@ -420,8 +530,8 @@ textarea:focus {
 }
 
 .new-btn {
-  margin-top: 20px;
-  width: 90px;
+  margin-top: 25px;
+  width: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -443,7 +553,7 @@ textarea:focus {
 
 /* search input */
 .search-container {
-  margin-top: 20px;
+  margin-top: 25px;
   width: 300px;
 }
 
@@ -486,8 +596,9 @@ textarea:focus {
 .about-container {
   max-width: 1000px;
   margin: 0 auto;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
+  line-height: 1.5;
 }
 
 .about-title {
@@ -498,25 +609,25 @@ textarea:focus {
 }
 
 .highlight {
-  color: #ff8400;
+  color: #DC5F00;
 }
 
 .about-intro {
   text-align: center;
   font-size: 1.2em;
-  color: #555;
+  color: #686D76;
   margin: 0 auto;
   max-width: 700px;
 }
 
 .about-section {
   margin: 40px 0 20px 0;
+  font-weight: 350;
 }
 
 .about-section h2 {
   font-size: 1.8em;
   margin-bottom: 20px;
-  color: #333;
 }
 
 .about-content {
@@ -559,7 +670,6 @@ textarea:focus {
 /* contact link */
 .about-contact-intro {
   font-size: 1.1em;
-  color: #333;
   margin-bottom: 20px;
   line-height: 1.6em;
 }
@@ -570,22 +680,19 @@ textarea:focus {
   transition: background-color 0.3s ease-in-out;
 }
 
-
 /* Contact Page Styling */
 .contact-section-container {
-  color: #333;
   max-width: 900px;
   margin: 50px auto;
   padding: 20px 20px 50px 20px;
-  font-family: "Noto Sans", sans-serif;
-  font-weight: 300;
+  font-family: "Roboto", sans-serif;
 }
 
 .contactLabel {
   text-align: center;
   font-size: 3rem;
   margin: 0px;
-  color: #ff8400;
+  color: #DC5F00;
 }
 
 .contact {
@@ -594,10 +701,11 @@ textarea:focus {
   font-size: 1.2rem;
   font-weight: 300;
   text-align: center;
+  line-height: 1.5;
 }
 
 .contactContainer {
-  flex-basis: 65%;
+  flex-basis: 70%;
 }
 
 .contact p {
@@ -623,16 +731,16 @@ textarea:focus {
 }
 
 .social-icons a:hover {
-  color: #ff8c00;
+  color: #DC5F00;
 }
 
 /* Footer Styling */
 footer {
-  font-family: "Noto Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
   text-align: center;
-  padding: 1em 0;
+  padding: 1.2rem 0;
   font-size: 1rem;
   border-top: 1px solid;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }

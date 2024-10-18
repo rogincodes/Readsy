@@ -211,7 +211,7 @@ app.post("/modify", async (req, res) => {
     try {
       await db.query("UPDATE books set isbn = $1, title = $2, author = $3, genre = $4, img_URL = $5, date_Read = $6, rating = $7, review = $8, notes = $9 WHERE id = $10;", [ isbn, title, author, genre, img_URL, date, rating, review, notes, id ]);
       invalidISBN = "";
-      res.redirect("/books.ejs");
+      res.redirect(`/journal/${id}`);
     } catch (err) {
       console.error(err);
     }
@@ -239,6 +239,7 @@ app.get("/books.ejs", async (req, res) => {
   await getAllBooks();
   await getGenres();
   selectedGenre = "";
+  sortOption = "date";
   res.render("books.ejs", 
     {
       typed: userQuery,

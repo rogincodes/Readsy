@@ -3,7 +3,7 @@
   <% if (locals.books[0]) { %>
     <!-- HEADER -->
     <div class="bookshelf-header">
-      <h1>BOOKSHELF</h1>
+      <h1 class="shelf-head">BOOKSHELF</h1>
       <div class="sorts">
         <div class="search-container">
           <input
@@ -30,7 +30,7 @@
             <option value="rating">Rating</option>
           </select>
         </form>
-        <a href="/new.ejs"class="new-btn">New Book</a>
+        <a href="/new.ejs"class="new-btn"><i class="fa fa-book"></i>&nbsp;&nbsp;New Book</a>
       </div>
     </div>
     
@@ -38,7 +38,7 @@
     <div id="search-pane">
       <p id="search-text" class="search-text"></p>
       <div>
-        <a href="/books.ejs" class="clear-filter"><i class="fas fa-times-square"></i>&nbsp;&nbsp;Clear filter</a>
+        <a href="/books.ejs" class="clear-filter"><i class="fa fa-times-circle"></i>&nbsp;&nbsp;Clear filter</a>
       </div>
     </div>
 

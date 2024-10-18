@@ -3,12 +3,18 @@ let searchQuery = "";
 let sorted = "";
 let theGenre = "";
 
+// SEARCH
 const input = document.getElementById('search-input');
 const bookshelf = document.getElementById('bookshelf');
-
 const fetchResults = async (query) => {
   if (query.length === 0) {
-    hideSearchText();
+    if (theGenre === "") {
+      hideSearchFilter();
+    } else {
+      showSearchFilter();
+    }
+  } else {
+    showSearchFilter();
   }
 
   try {
@@ -19,43 +25,32 @@ const fetchResults = async (query) => {
     bookCount = results.length;
     sorted = data.sort;
     theGenre = data.genre;
-    generateSearchText();
+    generateFilterText();
     if (query === "") {
-      hideSearchText();
+      if (theGenre === "") {
+        hideSearchFilter();
+      } else {
+        showSearchFilter();
+      }
     } else {
-      showSearchText();
+      showSearchFilter();
     }
-
-    // Populate the bookshelf with results
-    bookshelf.innerHTML = results.map(book => `
-      <div class="card">
-        <a href="/journal/${book.id}">
-          <img src="${book.img_url}" alt="" class="book-cover">
-          <div class="book-details">
-            <h1 class="limited-text">${book.title}</h1>
-            <h3 class="book-author">${book.author}</h3>
-            <h4 class="recommendation">Recommendation: ${book.rating}/10</h4>
-          </div>
-        </a>  
-      </div>
-    `).join('');
+    updateBookshelf(results);
   } catch (error) {
     console.error('Error fetching search results:', error);
     bookshelf.innerHTML = '<p>Error fetching results</p>'; // Handle error
   }
 };
-
 // Event listener for input changes
 input.addEventListener('input', () => {
     fetchResults(input.value);
 });
 
-// Sort
+// SORT BY DATE, TITLE OR RATING
 const sortSelect = document.getElementById('sort-select');
 sortSelect.addEventListener('change', async () => {
   try {
     const sortValue = sortSelect.value;
-
     // Send a POST request to the server
     const response = await fetch('/sort', {
       method: 'POST',
@@ -71,33 +66,19 @@ sortSelect.addEventListener('change', async () => {
     bookCount = results.length;
     sorted = data.sort;
     theGenre = data.genre;
-    generateSearchText();
-
-    // Populate the book list with the sorted results
-    bookshelf.innerHTML = results.map(book => `
-      <div class="card">
-        <a href="/journal/${book.id}">
-          <img src="${book.img_url}" alt="" class="book-cover">
-          <div class="book-details">
-            <h1 class="limited-text">${book.title}</h1>
-            <h3 class="book-author">${book.author}</h3>
-            <h4 class="recommendation">Recommendation: ${book.rating}/10</h4>
-          </div>
-        </a>  
-      </div>
-    `).join('');
+    generateFilterText();
+    updateBookshelf(results);
   } catch (error) {
     console.error('Error fetching search results:', error);
     bookshelf.innerHTML = '<p>Error fetching results</p>'; // Handle error
   }
 });
 
-// Sort by genre
+// SORT BY GENRE
 const genreSelect = document.getElementById('genre-select');
 genreSelect.addEventListener('change', async () => {
   try {
     const genreValue = genreSelect.value;
-
     // Send a POST request to the server
     const response = await fetch('/genre', {
       method: 'POST',
@@ -113,30 +94,33 @@ genreSelect.addEventListener('change', async () => {
     bookCount = results.length;
     sorted = data.sort;
     theGenre = data.genre;
-    generateSearchText();
-    showSearchText();
-
-    // Populate the book list with the sorted results
-    bookshelf.innerHTML = results.map(book => `
-      <div class="card">
-        <a href="/journal/${book.id}">
-          <img src="${book.img_url}" alt="" class="book-cover">
-          <div class="book-details">
-            <h1 class="limited-text">${book.title}</h1>
-            <h3 class="book-author">${book.author}</h3>
-            <h4 class="recommendation">Recommendation: ${book.rating}/10</h4>
-          </div>
-        </a>  
-      </div>
-    `).join('');
+    generateFilterText();
+    showSearchFilter();
+    updateBookshelf(results);
   } catch (error) {
     console.error('Error fetching search results:', error);
     bookshelf.innerHTML = '<p>Error fetching results</p>'; // Handle error
   }
 });
 
-// Build search text
-function generateSearchText() {
+// Populate the BOOKSHELF with results
+function updateBookshelf(results) {
+  bookshelf.innerHTML = results.map(book => `
+    <div class="card">
+      <a href="/journal/${book.id}">
+        <img src="${book.img_url}" alt="" class="book-cover">
+        <div class="book-details">
+          <h1 class="limited-text">${book.title}</h1>
+          <h3 class="book-author">${book.author}</h3>
+          <h4 class="recommendation">Recommendation: ${book.rating}/10</h4>
+        </div>
+      </a>  
+    </div>
+  `).join('');
+};
+
+// Build the search text
+function generateFilterText() {
   const searchText = document.getElementById('search-text');
   // check if singular or plural
   let noun = "";
@@ -147,23 +131,24 @@ function generateSearchText() {
   };
 
   if (theGenre === "") {
-    searchText.innerHTML = `<strong>${bookCount}</strong> ${noun} for books matching <strong>${searchQuery}</strong> sorted by ${sorted}`;
+    searchText.innerHTML = `<strong>${bookCount}</strong> ${noun} for books matching <strong>${searchQuery}</strong> sorted by <strong>${sorted}</strong>`;
   } else {
       if (searchQuery.length === 0) {
-        searchText.innerHTML = `<strong>${bookCount}</strong> ${noun} for books with ${theGenre} genre sorted by ${sorted}`;
+        searchText.innerHTML = `<strong>${bookCount}</strong> ${noun} for books with ${theGenre} genre sorted by <strong>${sorted}</strong>`;
       } else {
-        searchText.innerHTML = `<strong>${bookCount}</strong> ${noun} for books matching <strong>${searchQuery}</strong> with ${theGenre} genre sorted by ${sorted}`;
+        searchText.innerHTML = `<strong>${bookCount}</strong> ${noun} for books matching <strong>${searchQuery}</strong> with ${theGenre} genre sorted by <strong>${sorted}</strong>`;
       }
-    
   };
-}
+};
 
-function showSearchText() {
+// Show filters
+function showSearchFilter() {
   const searchDiv = document.getElementById('search-pane');
   searchDiv.style.display = 'flex'; // Set display to flex
 }
 
-function hideSearchText() {
+// Hide filters
+function hideSearchFilter() {
   const searchDiv = document.getElementById('search-pane');
   searchDiv.style.display = 'none'; // Set display to flex
 }
