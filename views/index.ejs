@@ -1,124 +1,135 @@
 <%- include("partials/header.ejs")  %>
 
-    <!-- HOME -->
-    <% if (locals.lucky.genre) {%>
-      <h1 class="random-head">Random. <span class="sub-head">Displays a book at random.</span></h1>
-      <!-- RANDOM BOOK -->
-      <section class="home">
-        <div class="random-details">
-          <h5 class="random-genre"><%= lucky.genre %></h5>
-          <a href="/journal/<%= lucky.id %>"><h1 class="random-title"><%= lucky.title %></h1></a>
-          <h3 class="random-author"><%= lucky.author %></h3>
-          <h5 class="random-recommendation">Recommendation: <%= lucky.rating %>/10</h5>
-          <a href="/journal/<%= lucky.id %>"><button class="buttons view-book">View Book</button></a>
-        </div>
-        <div class="random-book">
-          <a href="/journal/<%= lucky.id %>"><img src="<%= lucky.img_url %>" alt="<%= lucky.title %>" class="random-cover"></a>
-        </div>
-      </section>
-    <% } else {%>
-      <h1 class="title">Add books to showcase your collection.</h1>
-    <% }; %>
+  <!-- HOME -->
+  <section class="home">
+    <div class="left-pane">
+      <h1 class="readsy">readsy</h1>
+    </div>
+    <div class="right-pane">
+      <h1 class="description">a place to showcase your reading collection
+        share your thoughts with a review,
+        and keep the salient parts for reference by taking notes</h1>
+    </div>
+  </section>
 
-    <!-- BOOKSHELF -->
-    <% if (locals.featuredBooks[0]) {%>
-      <h1 id="featured" class="head">Featured. <span class="sub-head">Books you highly recommend, 10/10.</span></h1>
-      <section class="bookshelf">
-        <% for(let book of featuredBooks) {%>
-          <div class="card">
-            <a href="/journal/<%=book.id%>">
-              <img src="<%= book.img_url %>" alt="<%= book.title %>" class="book-cover">
-                <div class="book-details">
-                <h1 class="limited-text"><%= book.title %></h1>
-                <h3 class="book-author"><%= book.author %></h3>
-                <h4 class="recommendation">Recommendation: <%= book.rating %>/10</h4>
-              </div>
-            </a>  
-          </div>
-        <% } %>
-      </section>
-    <% } else {}; %>
+  <!-- RANDOM BOOK -->
+  <% if (locals.lucky.genre) {%>
+    <h1 class="random-head">Random. <span class="sub-head">Displays a book at random.</span></h1>
+    <section class="random">
+      <div class="random-details">
+        <h5 class="random-genre"><%= lucky.genre %></h5>
+        <a href="/journal/<%= lucky.id %>"><h1 class="random-title"><%= lucky.title %></h1></a>
+        <h3 class="random-author"><%= lucky.author %></h3>
+        <h5 class="random-recommendation">Recommendation: <%= lucky.rating %>/10</h5>
+        <a href="/journal/<%= lucky.id %>"><button class="buttons view-book">View Book</button></a>
+      </div>
+      <div class="random-book">
+        <a href="/journal/<%= lucky.id %>"><img src="<%= lucky.img_url %>" alt="<%= lucky.title %>" class="random-cover"></a>
+      </div>
+    </section>
+  <% } else {%>
+    <h1 class="title">Add books to showcase your collection.</h1>
+  <% }; %>
 
-    <!-- LATEST READ -->
-    <% if (locals.latestBooks[0]) {%>
-      <h1 id="latest" class="head">Latest. <span class="sub-head">The latest books you read.</span></h1>
-      <section class="bookshelf">
-        <% for(let book of latestBooks) {%>
-          <div class="card">
-            <a href="/journal/<%= book.id %>" >
-              <img src="<%= book.img_url %>" alt="<%= book.title %>" class="book-cover">
+  <!-- BOOKSHELF -->
+  <% if (locals.featuredBooks[0]) {%>
+    <h1 id="featured" class="head">Featured. <span class="sub-head">Books you highly recommend, 10/10.</span></h1>
+    <section class="bookshelf">
+      <% for(let book of featuredBooks) {%>
+        <div class="card">
+          <a href="/journal/<%=book.id%>">
+            <img src="<%= book.img_url %>" alt="<%= book.title %>" class="book-cover">
               <div class="book-details">
-                <h1 class="limited-text"><%= book.title %></h1>
-                <h3 class="book-author"><%= book.author %></h3>
-                <h4 class="recommendation">Recommendation: <%= book.rating %>/10</h4>
-              </div>
-            </a>  
-          </div>
-        <% } %>
-      </section>
-    <% } else { %>
-      <!-- ADD BOOK IF NONE YET-->
-      <h1 id="add-book" class="head">Add a new book. <span class="sub-head">Enter the book you've finished reading.</span></h1>
-      <section class="new-book">
-        <div class="form-container">
-          <h1 class="form-title">New Book</h1>
-          <form action="/add" method="POST">
-            <!-- LEFT GROUP -->
-            <div class="group-container">
-              <div class="form-group">
-                <div>
-                  <label for="isbn">ISBN</label>
-                  <input type="text" id="isbn" name="isbn" placeholder="Use ISBN-13" required>
-                  <span class="error"><%= isbnError  %></span>
-                </div>
-                <div>
-                  <label for="title">Title</label>
-                  <input type="text" id="title" name="title" placeholder="Book Title" required>  
-                </div>
-                <div>
-                  <label for="author">Author</label>
-                  <input type="text" id="text" name="author" placeholder="Book Author" required>  
-                </div>
-                <div>
-                  <label for="genre">Genre</label>
-                  <input type="text" id="genre" name="genre" placeholder="Book Genre" required>  
-                </div>
-                <div>
-                  <label for="dateRead">Date Read</label>
-                  <input type="date" id="dateRead" name="dateRead" required>
-                </div>
-              </div>
-              <!-- RIGHT GROUP -->
-              <div class="form-group">
-                <div>
-                  <label for="rating">Rating:</label>
-                  <select class="rating" id="rating" name="rating" required>
-                    <option value="10">10</option>
-                    <option value="9">9</option>
-                    <option value="8">8</option>
-                    <option value="7">7</option>
-                    <option value="6">6</option>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="review">Review</label>
-                  <textarea id="review" name="review" placeholder="Your review" rows="5"></textarea>
-                </div>
-                <div>
-                  <label for="notes">Notes</label>
-                  <textarea id="notes" name="notes" placeholder="Your notes" rows="5"></textarea>
-                </div>
-              </div>            
+              <h1 class="limited-text"><%= book.title %></h1>
+              <h3 class="book-author"><%= book.author %></h3>
+              <h4 class="recommendation">Recommendation: <%= book.rating %>/10</h4>
             </div>
-            <button type="submit" class="submit-button">SUBMIT</button>
-          </form>
+          </a>  
         </div>
-      </section>
-    <% }; %>
+      <% } %>
+    </section>
+  <% } else {}; %>
+
+  <!-- LATEST READ -->
+  <% if (locals.latestBooks[0]) {%>
+    <h1 id="latest" class="head">Latest. <span class="sub-head">The latest books you read.</span></h1>
+    <section class="bookshelf">
+      <% for(let book of latestBooks) {%>
+        <div class="card">
+          <a href="/journal/<%= book.id %>" >
+            <img src="<%= book.img_url %>" alt="<%= book.title %>" class="book-cover">
+            <div class="book-details">
+              <h1 class="limited-text"><%= book.title %></h1>
+              <h3 class="book-author"><%= book.author %></h3>
+              <h4 class="recommendation">Recommendation: <%= book.rating %>/10</h4>
+            </div>
+          </a>  
+        </div>
+      <% } %>
+    </section>
+  <% } else { %>
+    <!-- ADD BOOK IF NONE YET-->
+    <h1 id="add-book" class="head">Add a new book. <span class="sub-head">Enter the book you've finished reading.</span></h1>
+    <section class="new-book">
+      <div class="form-container">
+        <h1 class="form-title">New Book</h1>
+        <form action="/add" method="POST">
+          <!-- LEFT GROUP -->
+          <div class="group-container">
+            <div class="form-group">
+              <div>
+                <label for="isbn">ISBN</label>
+                <input type="text" id="isbn" name="isbn" placeholder="Use ISBN-13" required>
+                <span class="error"><%= isbnError  %></span>
+              </div>
+              <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholder="Book Title" required>  
+              </div>
+              <div>
+                <label for="author">Author</label>
+                <input type="text" id="text" name="author" placeholder="Book Author" required>  
+              </div>
+              <div>
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre" placeholder="Book Genre" required>  
+              </div>
+              <div>
+                <label for="dateRead">Date Read</label>
+                <input type="date" id="dateRead" name="dateRead" required>
+              </div>
+            </div>
+            <!-- RIGHT GROUP -->
+            <div class="form-group">
+              <div>
+                <label for="rating">Rating:</label>
+                <select class="rating" id="rating" name="rating" required>
+                  <option value="10">10</option>
+                  <option value="9">9</option>
+                  <option value="8">8</option>
+                  <option value="7">7</option>
+                  <option value="6">6</option>
+                  <option value="5">5</option>
+                  <option value="4">4</option>
+                  <option value="3">3</option>
+                  <option value="2">2</option>
+                  <option value="1">1</option>
+                </select>
+              </div>
+              <div>
+                <label for="review">Review</label>
+                <textarea id="review" name="review" placeholder="Your review" rows="5"></textarea>
+              </div>
+              <div>
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" placeholder="Your notes" rows="5"></textarea>
+              </div>
+            </div>            
+          </div>
+          <button type="submit" class="submit-button">SUBMIT</button>
+        </form>
+      </div>
+    </section>
+  <% }; %>
 
 <%- include("partials/footer.ejs")  %>
