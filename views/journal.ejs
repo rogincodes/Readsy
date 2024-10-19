@@ -27,16 +27,16 @@
   <!-- BOOKSHELF -->
   <% if (locals.authorBooks[0]) {%>
     <h1>Books by <span class="sub-head"><%= book.author %></span></h1>
-    <section class="bookshelf">
+    <section class="bookshelf" id="bookshelf">
       <% for(let book of authorBooks) {%>
         <div class="card">
-          <a href="/books/<%=book.id%>" >
+          <a href="/journal/<%=book.id%>">
             <img src="<%= book.img_url %>" alt="" class="book-cover">
             <div class="book-details">
-            <h1><%= book.title %></h1>
-            <h3><%= book.author %></h3>
-            <h4>Recomendation: <%= book.rating %>/10</h4>
-          </div>
+              <h1 class="limited-text"><%= book.title %></h1>
+              <h3 class="book-author"><%= book.author %></h3>
+              <h4 class="recommendation">Recommendation: <%= book.rating %>/10</h4>
+            </div>
           </a>  
         </div>
       <% } %>
