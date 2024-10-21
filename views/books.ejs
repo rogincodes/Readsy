@@ -37,7 +37,7 @@
     <!-- SEARCH TEXT -->
     <div id="search-pane">
       <p id="search-text" class="search-text"></p>
-      <div>
+      <div class="clear-btn">
         <a href="/books.ejs" class="clear-filter"><i class="fa fa-times-circle"></i>&nbsp;&nbsp;Clear filter</a>
       </div>
     </div>
@@ -57,7 +57,12 @@
         </div>
       <% } %>
     </section>
-  <% } else {}; %>
+  <% } else {%>
+    <div class="no-books-yet">
+      <h1 class="shelf-head">Add books to showcase your collection.</h1>
+      <a href="/new.ejs"><button class="add-books-btn">ADD BOOKS</button></a>
+    </div>  
+  <% }; %>
 
   <script src="/script.js"></script>
 

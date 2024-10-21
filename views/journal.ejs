@@ -15,10 +15,10 @@
     <div class="journal-details">
       <div class="scrollable-content">
         <h1 class="j-title"><%= book.title %></h1>
-        <h2 class="j-author"><%= book.author %></h2>
-        <h3>Review</h3>
+        <a href="#author-books" class="a-author"><h2 class="j-author"><%= book.author %></h2></a>
+        <h3 class="j-labels">Review</h3>
         <p class="j-review"><%= book.review %></h5>
-        <h3>Notes</h3>
+        <h3 class="j-labels">Notes</h3>
         <p class="j-notes"><%= book.notes %></h5>
       </div>
     </div>
@@ -26,7 +26,7 @@
 
   <!-- BOOKSHELF -->
   <% if (locals.authorBooks[0]) {%>
-    <h1>Books by <span class="sub-head"><%= book.author %></span></h1>
+    <h1 class="head author-books" id="author-books">Books by <span class="sub-head"><%= book.author %></span> I read</h1>
     <section class="bookshelf" id="bookshelf">
       <% for(let book of authorBooks) {%>
         <div class="card">

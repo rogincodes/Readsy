@@ -35,7 +35,7 @@ let userQuery = "";
 
 async function getFeatured() {
   try {
-    const result = await db.query("SELECT * FROM books WHERE rating = 10 ORDER BY title LIMIT 10;");
+    const result = await db.query("SELECT * FROM books WHERE rating = 10 LIMIT 10;");
     featured = result.rows;
   } catch (err) {
     console.err(err);
@@ -43,15 +43,15 @@ async function getFeatured() {
 };
 
 async function randomBook() {
-  if (featured != 0) {  
-    const num = Math.floor(Math.random() * featured.length);
-    random = featured[num];
+  if (allBooks != 0) {  
+    const num = Math.floor(Math.random() * allBooks.length);
+    random = allBooks[num];
   } else {};
 };
 
 async function getLatest() {
   try {
-    const result = await db.query("SELECT * FROM books ORDER BY date_read DESC LIMIT 10;");
+    const result = await db.query("SELECT * FROM books ORDER BY date_read DESC LIMIT 5;");
     latest = result.rows;
   } catch (err) {
     console.err(err);
@@ -108,8 +108,9 @@ async function getBooksByAuthor() {
 
 //GET to home page
 app.get("/", async (req, res) => {
-  await getFeatured();
+  await getAllBooks();
   await randomBook();
+  await getFeatured();
   await getLatest();
   res.render("index.ejs",
     { 
