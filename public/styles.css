@@ -660,6 +660,7 @@ textarea:focus {
 
 .new-btn {
   flex-grow: 1;
+  height: 30px;
   width: 80px;
   display: flex;
   justify-content: center;
@@ -682,9 +683,8 @@ textarea:focus {
 
 /* search input */
 .search-container {
-  flex-grow: 3;
+  flex-basis: 100%;
   margin-top: 5px;
-  width: 300px;
 }
 
 .search-input {
@@ -913,7 +913,350 @@ footer {
   font-style: normal;
 }
 
-@media (min-width: 1200px) {
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+  
+  /* General Styling */
+  .head {
+    padding: 10px 0 0 10px;
+    font-size: 1.7rem;
+  }
+  
+  /* Home Section Styling */
+  .home {
+    height: 25vh;
+  }
+  
+  .readsy {
+    font-size: 3.5rem;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+  }
+  
+  .left-pane {
+    flex-basis: 35%;
+    padding-bottom: 8px;
+  }
+  
+  .right-pane {
+    flex-basis: 65%;
+    padding-left: 40px;
+    padding-right: 0;
+  }
+  
+  /* Random Book Section Styling */
+  .random {
+    height: 20vh;
+  }
+  
+  .random-head {
+    padding: 10px 0 0 10px;
+    font-size: 1.7rem;
+  }
+  
+  .random-details {
+    font-size: 1rem;
+    padding-left: 10px;
+  }
+
+  .random-details > * {
+    margin: 0 0 0.2rem 0;
+  }
+  
+  .random-cover {
+    height: 140px;
+  }
+  
+  .view-book {
+    width: 80px;
+  }
+  
+  /* Bookshelf Section Styling */
+  .bookshelf {
+    margin-top: 15px;
+    gap: 20px;
+  }
+  
+  /* card */
+  .card {
+    flex-basis: 21%;
+    font-size: .6rem;
+    margin-bottom: 0;
+  }
+  
+  /* book details */
+  .book-cover {
+    height: 210px;
+  }
+  
+  .book-details {
+    padding: 2.2px;
+  }
+
+  .book-details > * {
+    margin: .2rem 0 0 0;
+  }
+  
+  /* New Book Page Styling */
+  .add-book, .edit-book {
+    white-space: unset;
+    margin: 8px 0 15px 0;
+  }
+
+  .new-book {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* form */
+  .form-container {
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .group-container {
+    justify-content: space-between;
+  }
+  
+  .form-group {
+    flex-basis: 48%;
+    max-width: 48%;
+  }
+  
+  .form-title {
+    margin: 0 0 20px 0;
+  }
+  
+  .submit-button {
+    margin-top: 20px;
+    font-size: 1rem;
+    padding: 8px;
+  }
+  
+  /* Journal Page Styling */
+  .journal-section {
+    height: 100vh;
+    font-size: 18px;
+  }
+  
+  .journal {
+    flex-basis: 25%;
+    margin: 25px 0 0 0;
+    overflow: hidden;
+  }
+  
+  .journal-cover {
+    height: 180px;
+    width: 125px;
+  }
+  
+  /* journal buttons */
+  .edit-btn, .delete-btn {
+    width: 50px;
+    font-size: .6rem;
+  }
+  
+  /* journal details */
+  .journal-details {
+    flex-basis: 72%;
+    padding: 5px;
+    max-height: 100vh;
+  }
+  
+  .journal-details > * {
+    max-width: 850px;
+  }
+  
+  .j-title {
+    font-size: 2.5rem;
+    margin: 20px 0 0 0;
+  }
+  
+  .j-author {
+    font-size: 1.8rem;
+    margin: 5px 0 20px 0;
+  }
+  
+  .j-genre {
+    font-size: 1rem;
+    margin: 10px 0 0 0;
+  }
+  
+  .j-rating {
+    font-size: .7rem;
+    margin: 8px 0 15px 0;
+  }
+  
+  .j-review, .j-notes {
+    white-space: pre-line;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .j-labels {
+    margin: unset;
+  }
+
+  .scrollable-content {
+    flex-grow: 1;                 /* Allows the content to grow and fill available space */
+    overflow-y: auto;             /* Allows vertical scrolling when needed */
+    max-height: 90%;             /* Ensures it won't exceed the parent's height */
+    scrollbar-width: none;        /* Hides scrollbar in Firefox */
+    -ms-overflow-style: none;     /* Hides scrollbar in Internet Explorer 10+ */
+  }
+  
+  /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+  .scrollable-content::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Books Page Styling */
+  .shelf-head {
+    font-size: 2.25rem;
+    margin: 10px 0 0 0;
+    padding: 0 10px;
+  }
+  
+  /* sorts */
+  .sorts {
+    padding: 0 10px;
+    gap: 10px;
+  }
+
+  .sort-options {
+    padding: 8px; /* Add padding to give space around the text */
+    font-size: 14px;
+  }
+  
+  .genre-width {
+    width: 170px;
+  }
+  
+  .sort-width {
+    width: 125px;
+  }
+  
+  .new-btn {
+    height: unset;
+    font-size: 14px;
+  }
+  
+  /* search filter */
+  #search-pane {
+    padding-top: 20px;
+    margin: 10px 0 20px 0;
+    font-size: 15px;
+  }
+  
+  .search-text {
+    margin: 0 0 1.2rem 0;
+    padding: 0 10px;
+  }
+
+  .clear-btn {
+    align-items: flex-start;
+  }
+  
+  .clear-filter {
+    padding: 0 10px;
+  }
+
+  .no-books-yet > a {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .add-books-btn {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  /* About Page Styling */
+  .about-container {
+    padding: 0 20px;
+  }
+
+  .about-section h2 {
+    margin-bottom: 20px;
+  }
+  
+  .about-text {
+    padding-right: 20px;
+    font-size: 1.1em;
+  }
+  
+  .about-image {
+    padding-left: 50px;
+  }
+  
+  .about-image img {
+    height: 270px;
+  }
+  
+  .about-list {
+    font-size: 1.1em;
+  }
+  
+  .philosophy-text {
+    font-size: 1.1em;
+  }
+  
+  /* contact link */
+  .about-contact-intro {
+    margin-bottom: 20px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* card */
+  .card {
+    flex-basis: 21.25%;
+    font-size: .7rem;
+  }
+  
+  /* book details */
+  .book-cover {
+    height: 250px;
+  }
+
+  /* Journal Page Styling */
+  .journal {
+    margin: 25px 0 0 0;
+  }
+  
+  .journal-cover {
+    height: 240px;
+    width: 160px;
+  }
+  
+  /* journal buttons */
+  .edit-btn, .delete-btn {
+    width: 70px;
+    font-size: .8rem;
+  }
+
+  /* journal details */
+  .j-genre {
+    font-size: 1.4rem;
+    margin: 10px 0 0 0;
+  }
+  
+  .j-rating {
+    font-size: .9rem;
+    margin: 8px 0 15px 0;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
   html {
     font-size: 16px;
   }
@@ -930,7 +1273,7 @@ footer {
   }
   
   .head {
-    padding: 25px 0 20px 0;
+    padding: 25px 0 20px 20px;
     font-size: 2.25rem;
   }
   
@@ -952,6 +1295,7 @@ footer {
   
   .header-container {
     grid-area: 1 / 2 / 2 / 3;
+    padding: 0 20px;
   }
   
   .hidden-temp {
@@ -981,36 +1325,27 @@ footer {
   }
   
   .left-pane {
-    flex-basis: 35%;
     padding-bottom: 10px;
-  }
-  
-  .right-pane {
-    flex-basis: 65%;
-    padding-left: 40px;
-    padding-right: 0;
   }
   
   /* Random Book Section Styling */
   .random {
-    height: 40vh;
+    height: 34vh;
   }
   
   .random-head {
-    padding: 30px 0 0 0;
+    padding: 30px 0 0 20px;
     font-size: 2.2rem;
   }
   
   .random-details {
     font-size: 1.4rem;
-    padding-left: 0;
+    padding: 10px 0 0 20px;
   }
 
   .random-details > * {
     margin: 0 0 0.2rem 0;
-    text-decoration: none;
   }
-  
   
   .random-cover {
     height: 240px;
@@ -1023,28 +1358,28 @@ footer {
   
   /* Bookshelf Section Styling */
   .bookshelf {
-    margin-top: 0;
-    gap: 35px;
+    margin: 0;
+    gap: 25px;
   }
   
   /* card */
   .card {
-    flex-basis: 17.7%;
+    flex-basis: 21.25%;
     font-size: .8rem;
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
   
   /* book details */
   .book-cover {
-    height: 315px;
+    height: 310px;
   }
   
   .book-details {
-    padding: 5px;
+    padding: 2.2px;
   }
-  
+
   .book-details > * {
-    margin: .3rem 0 0 0;
+    margin: .25rem 0 0 0;
   }
   
   /* New Book Page Styling */
@@ -1052,49 +1387,14 @@ footer {
     white-space: unset;
     margin: 0;
   }
-
-  .new-book {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
   
   /* form */
-  .form-container {
-    padding: 20px;
-  }
-  
-  .group-container {
-    justify-content: space-between;
-  }
-  
   .form-group {
     flex-basis: 49%;
     max-width: 49%;
   }
   
-  .form-title {
-    margin: 0 0 20px 0;
-  }
-  
-  .submit-button {
-    margin-top: 20px;
-    font-size: 1rem;
-    padding: 8px;
-  }
-  
-  /* Journal Page Styling */
-  .journal-section {
-    height: 100vh;
-    font-size: 18px;
-  }
-  
-  .journal {
-    flex-basis: 25%;
-    margin: 25px 0;
-    overflow: hidden;
-  }
-  
+  /* Journal Page Styling */  
   .journal-cover {
     height: 320px;
     width: 220px;
@@ -1115,49 +1415,9 @@ footer {
     max-height: 101vh;
   }
   
-  .journal-details > * {
-    max-width: 850px;
-  }
-  
   .j-title {
     font-size: 2.5rem;
-    margin: 32px 0 0 0;
-  }
-  
-  .j-author {
-    font-size: 1.8rem;
-    margin: 5px 0 20px 0;
-  }
-  
-  .j-genre {
-    margin: 10px 0 0 0;
-  }
-  
-  .j-rating {
-    margin: 10px 0 20px 0;
-  }
-  
-  .j-review, .j-notes {
-    white-space: pre-line;
-    padding: 0;
-    margin: 10px 0;
-  }
-  
-  .j-labels {
-    margin: unset;
-  }
-
-  .scrollable-content {
-    flex-grow: 1;                 /* Allows the content to grow and fill available space */
-    overflow-y: auto;             /* Allows vertical scrolling when needed */
-    max-height: 90%;             /* Ensures it won't exceed the parent's height */
-    scrollbar-width: none;        /* Hides scrollbar in Firefox */
-    -ms-overflow-style: none;     /* Hides scrollbar in Internet Explorer 10+ */
-  }
-  
-  /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
-  .scrollable-content::-webkit-scrollbar {
-    display: none;
+    margin: 30px 0 0 0;
   }
   
   /* Books Page Styling */
@@ -1169,39 +1429,33 @@ footer {
   
   .shelf-head {
     flex-basis: unset;
-    font-size: 2.25rem;
     margin: 20px 0 0 0;
-    padding: 0;
+    padding: 0 20px;
   }
   
   /* sorts */
   .sorts {
     flex-basis: unset;
     flex-wrap: nowrap;
-    padding: 0;
-    gap: 10px;
+    padding: 0 20px;
   }
   
   .sort-options {
     margin-top: 25px;
     padding: 8px; /* Add padding to give space around the text */
-    font-size: 14px;
   }
   
   .genre-width {
     width: 170px;
-    background-color: #f9f9f9;
   }
   
   .sort-width {
     width: 125px;
-    background-color: #f9f9f9;
   }
   
   .new-btn {
     margin-top: 25px;
-    width: 110px;
-    font-size: 14px;
+    width: 250px;
   }
   
   /* search input */
@@ -1209,55 +1463,24 @@ footer {
     margin-top: 25px;
   }
   
-  /* search text */
-  .hidden {
-    display: none;
-  }
-  
+  /* search filter */
   #search-pane {
-    display: none;
     padding-top: 20px;
     margin-bottom: 20px;
-    font-size: 15px;
   }
   
   .search-text {
     margin: 0 0 1.2rem 0;
-    padding: unset;
-  }
-
-  .clear-btn {
-    align-items: flex-start;
+    padding: 0 20px;
   }
   
   .clear-filter {
-    padding: 0;
-  }
-
-  .no-books-yet > a {
-    flex-basis: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .add-books-btn {
-    padding: 10px;
-    font-size: 1rem;
+    padding: 0 20px;
   }
   
   /* About Page Styling */
   .about-container {
     max-width: 1000px;
-    padding: 0;
-  }
-
-  .about-section h2 {
-    margin-bottom: 20px;
-  }
-  
-  .about-text {
-    padding-right: 20px;
-    font-size: 1.1em;
   }
   
   .about-image {
@@ -1267,17 +1490,83 @@ footer {
   .about-image img {
     height: 260px;
   }
-  
-  .about-list {
-    font-size: 1.1em;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {    
+  .head {
+    padding: 25px 0 20px 0;
+    font-size: 2.25rem;
   }
   
-  .philosophy-text {
-    font-size: 1.1em;
+  /* Header Section Styling */
+  .header-container {
+    grid-area: 1 / 2 / 2 / 3;
+    padding: 0;
   }
   
-  /* contact link */
-  .about-contact-intro {
-    margin-bottom: 20px;
+  /* Home Section Styling */
+  .left-pane {
+    padding-bottom: 10px;
+  }
+  
+  /* Random Book Section Styling */
+  .random {
+    height: 40vh;
+  }
+  
+  .random-head {
+    padding: 30px 0 0 0;
+  }
+  
+  .random-details {
+    padding-left: 0;
+  }
+
+  .random-details > * {
+    margin: 0 0 0.2rem 0;
+  }
+  
+  /* Bookshelf Section Styling */
+  .bookshelf {
+    margin-top: 0;
+    gap: 35px;
+  }
+  
+  /* card */
+  .card {
+    flex-basis: 17.7%;
+    margin-bottom: 0;
+  }
+  
+  /* book details */
+  .book-cover {
+    height: 315px;
+  }
+  
+  .book-details {
+    padding: 5px;
+  }
+  
+  .book-details > * {
+    margin: .3rem 0 0 0;
+  }
+  
+  /* Books Page Styling */ 
+  .shelf-head {
+    padding: 0;
+  }
+  
+  /* sorts */
+  .sorts {
+    padding: 0;
+  }
+
+  .search-text {
+    padding: unset;
+  }
+
+  .clear-filter {
+    padding: 0;
   }
 }
