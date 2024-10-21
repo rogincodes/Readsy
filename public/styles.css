@@ -79,11 +79,11 @@ button:active {
   justify-content: center;
   align-items: center;
   color: #DC5F00;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: "Neuton", serif;
   font-weight: 800;
   text-decoration: none;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .top-sign-in {
@@ -180,17 +180,17 @@ button:active {
 }
 
 .readsy {
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 900;
   color: #DC5F00;
-  padding: 25px;
+  padding: 0 25px;
 }
 
 .description {
   white-space: pre-line;
   font-weight: 400;
   font-style: italic;
-  font-size: .9rem;
+  font-size: .7rem;
 }
 
 .left-pane {
@@ -206,7 +206,7 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 35px;
+  padding-right: 25px;
   padding-left: 10px;
   /* Initial state (masked and transparent) */
   opacity: 0;
@@ -253,13 +253,13 @@ button:active {
 }
 
 .random-details > * {
-  margin: 0 0 0.2rem 0;
+  margin: 0;
   text-decoration: none;
 }
 
 .random-title {
   color: #373A40;
-  margin: 0 0 0.2rem 0;
+  margin: 0;
 }
 
 .random-title:hover {
@@ -278,7 +278,7 @@ button:active {
 }
 
 .random-cover {
-  height: 100px;
+  height: 90px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -332,7 +332,7 @@ button:active {
 /* book details */
 .book-cover {
   display: flex;
-  height: 180px;
+  height: 165px;
   width: 100%;
   margin: 0;
   transition: transform 0.2s ease-in-out;
@@ -469,6 +469,7 @@ textarea:focus {
   display: flex;
   flex-wrap: wrap;
   font-size: 16px;
+  border-bottom: 1px solid #ccc;
 }
 
 .journal {
@@ -480,8 +481,8 @@ textarea:focus {
 }
 
 .journal-cover {
-  height: 320px;
-  width: 260px;
+  height: 280px;
+  width: 220px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -495,7 +496,6 @@ textarea:focus {
 
 .j-rating {
   font-weight: 300;
-  color: #686D76;
   font-size: .9rem;
   margin: 5px 0 15px 0;
 }
@@ -578,8 +578,12 @@ textarea:focus {
 }
 
 .a-author {
-  color: #686D76;
+  color: #373A40;
   text-decoration: none;
+}
+
+.a-author:hover {
+  text-decoration: underline;
 }
 
 .author-books {
@@ -969,6 +973,7 @@ footer {
   
   .readsy {
     font-size: 4rem;
+    padding: 0 35px;
   }
   
   .description {
@@ -1000,6 +1005,12 @@ footer {
     font-size: 1.4rem;
     padding-left: 0;
   }
+
+  .random-details > * {
+    margin: 0 0 0.2rem 0;
+    text-decoration: none;
+  }
+  
   
   .random-cover {
     height: 240px;
@@ -1076,7 +1087,6 @@ footer {
   .journal-section {
     height: 100vh;
     font-size: 18px;
-    border-bottom: 1px solid #ccc;
   }
   
   .journal {
@@ -1086,6 +1096,7 @@ footer {
   }
   
   .journal-cover {
+    height: 320px;
     width: 220px;
     margin-top: 5px;
   }
