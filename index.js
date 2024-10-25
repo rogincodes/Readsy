@@ -53,10 +53,18 @@ let userQuery = "";
 let userAlreadyExist = "";
 let userNotFound = "";
 let incorrectPsswrd = "";
+let userID = 0;
+
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login'); // Redirect if not authenticated
+};
 
 async function getFeatured() {
   try {
-    const result = await db.query("SELECT * FROM books WHERE rating = 10 LIMIT 10;");
+    const result = await db.query("SELECT * FROM books WHERE user_id = $1 AND rating = 10 LIMIT 10;", [ userID ]);
     featured = result.rows;
   } catch (err) {
     console.err(err);
@@ -72,7 +80,7 @@ async function randomBook() {
 
 async function getLatest() {
   try {
-    const result = await db.query("SELECT * FROM books ORDER BY date_read DESC LIMIT 5;");
+    const result = await db.query("SELECT * FROM books WHERE user_id = $1 ORDER BY date_read DESC LIMIT 5;", [ userID ]);
     latest = result.rows;
   } catch (err) {
     console.err(err);
@@ -81,7 +89,7 @@ async function getLatest() {
 
 async function getAllBooks() {
   try {
-    const result = await db.query("SELECT * FROM books ORDER BY date_read DESC;");
+    const result = await db.query("SELECT * FROM books WHERE user_id = $1 ORDER BY date_read DESC;", [ userID ]);
     allBooks = result.rows;
   } catch (err) {
     console.error(err);
@@ -104,7 +112,7 @@ async function sortBooks() {
 
 async function getGenres() {
   try {
-    const result = await db.query("SELECT DISTINCT genre from books ORDER BY genre ASC;")
+    const result = await db.query("SELECT DISTINCT genre from books WHERE user_id = $1 ORDER BY genre ASC;", [ userID ]);
     allGenres = result.rows;
   } catch (err) {
     console.error(err);
@@ -120,7 +128,7 @@ async function getBooksByGenre() {
 async function getBooksByAuthor() {
   const author = specifiedBook.author;
   try {
-    const result = await db.query("SELECT * from books WHERE author = $1 ORDER BY date_read DESC", [ author ]);
+    const result = await db.query("SELECT * from books WHERE user_id = $1 AND author = $2 ORDER BY date_read DESC", [ userID, author ]);
     booksByAuthor = result.rows;
   } catch (err) {
     console.error(err);
@@ -143,37 +151,38 @@ app.get("/login", (req, res) => {
 });
 
 // GET to home page
-app.get("/", async (req, res) => {
-  console.log(req.user);
-  if (req.isAuthenticated()) {
-    await getAllBooks();
-    await randomBook();
-    await getFeatured();
-    await getLatest();
-    res.render("index.ejs",
-      { 
-        lucky: random,
-        featuredBooks: featured,
-        latestBooks: latest,
-        isbnError: invalidISBN,
-      });
-  } else {
-    res.redirect("/login");
-  }
+app.get("/", isAuthenticated, async (req, res) => {
+  await getAllBooks();
+  await randomBook();
+  await getFeatured();
+  await getLatest();
+  res.render("index.ejs",
+    { 
+      lucky: random,
+      featuredBooks: featured,
+      latestBooks: latest,
+      isbnError: invalidISBN,
+    });
 });
 
 // GET to about page
-app.get("/about.ejs", async (req, res) => {
+app.get("/about.ejs", isAuthenticated, async (req, res) => {
   res.render("about.ejs");
 });
 
 // GET to contact page
-app.get("/contact.ejs", async (req, res) => {
+app.get("/contact.ejs", isAuthenticated, async (req, res) => {
   res.render("contact.ejs");
 });
 
 // GET log out
 app.get("/logout", (req, res) => {
+  // reset values
+  userAlreadyExist = "";
+  userNotFound = "";
+  incorrectPsswrd = "";
+  random = [];
+
   req.logout(function (err) {
     if (err) {
       return next(err);
@@ -183,7 +192,7 @@ app.get("/logout", (req, res) => {
 })
 
 // GET to new book page
-app.get("/new.ejs", async (req, res) => {
+app.get("/new.ejs", isAuthenticated, async (req, res) => {
   res.render("new.ejs",
     { 
       isbnError: invalidISBN,
@@ -207,7 +216,7 @@ app.post("/add", async (req, res) => {
     const img_URL = result.data.url;
     // INSERT data
     try {
-      await db.query("INSERT INTO books (isbn, title, author, genre, img_URL, date_Read, rating, review, notes)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);", [ isbn, title, author, genre, img_URL, date, rating, review, notes ]);
+      await db.query("INSERT INTO books (isbn, title, author, genre, img_URL, date_read, rating, review, notes, user_id)VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);", [ isbn, title, author, genre, img_URL, date, rating, review, notes, userID ]);
       invalidISBN = "";
       res.redirect("/books.ejs");
     } catch (err) {
@@ -221,7 +230,7 @@ app.post("/add", async (req, res) => {
 });
 
 // GET to specific book journal by id
-app.get("/journal/:id", async (req, res) => {
+app.get("/journal/:id", isAuthenticated, async (req, res) => {
   const rawId = req.params.id.trim();
   const id = parseInt(rawId, 10); 
   if (isNaN(id)) {
@@ -244,7 +253,7 @@ app.get("/journal/:id", async (req, res) => {
 });
 
 // GET to edit page
-app.get("/edit.ejs", async (req, res) => {
+app.get("/edit.ejs", isAuthenticated, async (req, res) => {
   const dateTimeString = specifiedBook.date_read;
   let dateOnly;
   if (typeof dateTimeString === 'string') {
@@ -306,7 +315,7 @@ app.post("/delete/:id", async (req, res) => {
 });
 
 // GET to books page
-app.get("/books.ejs", async (req, res) => {
+app.get("/books.ejs", isAuthenticated, async (req, res) => {
   await getAllBooks();
   await getGenres();
   selectedGenre = "";
@@ -393,6 +402,7 @@ app.post("/register", async (req, res) => {
             const user = result.rows[0];
             req.login(user, (err) => {
               console.log("success");
+              userID = user.id;
               res.redirect("/");
             });
           }
@@ -418,6 +428,7 @@ passport.use(
           } else {
             if (valid) {
               // Passed password check
+              userID = user.id;
               return cb(null, user);
             } else {
               // Did not pass password check
