@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Readsy - login or sign up</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section class="login">
+    <div class="login-container">
+      <div class="readsy-intro">
+        <h1 class="intro-web">readsy</h1>
+        <p class="intro-description">a place to save your reading collection
+          review the books you have read,
+          and keep the salient parts for lookup by taking notes
+        </p>
+      </div>
+      <div class="login-form">
+        <form action="/register" method="POST">
+          <div class="sign-up-form">
+            <input type="text" id="username" name="username" placeholder="Email" required>
+            <input type="password" id="isbn" name="isbn" placeholder="Password" required>
+          </div>
+          <div class="bottom-buttons">
+            <button type="submit" class="login-and-sign-up-button">Log in</button>
+            <p>Don't have an account? <a href="/signup" class="redirect-button">Sign up</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer class="foot">
+      &copy; 2024 All rights reserved.
+    </footer>
+  </section>
+</body>
+</html>

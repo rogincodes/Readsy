@@ -106,6 +106,16 @@ async function getBooksByAuthor() {
   }
 }
 
+//GET to sign-up page
+app.get("/signup", (req, res) => {
+  res.render("signup.ejs");
+});
+
+//GET to login page
+app.get("/login", (req, res) => {
+  res.render("login.ejs");
+});
+
 //GET to home page
 app.get("/", async (req, res) => {
   await getAllBooks();
