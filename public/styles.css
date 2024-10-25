@@ -300,8 +300,7 @@ button:active {
   margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding-bottom: 20px;
+  padding: 0 8px 20px 8px;
   gap: 10px;
 }
 
@@ -314,6 +313,7 @@ button:active {
   font-size: .5rem;
   cursor: pointer;
   margin-bottom: 10px;
+  margin-right: 4px;
 }
 
 .card:hover .book-cover{
@@ -1137,6 +1137,7 @@ footer {
   /* Bookshelf Section Styling */
   .bookshelf {
     margin-top: 15px;
+    padding: 0 12px 20px 12px;
     gap: 20px;
   }
   
@@ -1145,6 +1146,7 @@ footer {
     flex-basis: 21%;
     font-size: .6rem;
     margin-bottom: 0;
+    margin-right: 8px;
   }
   
   /* book details */
@@ -1385,6 +1387,10 @@ footer {
     height: 250px;
   }
 
+  .card {
+    margin-right: 12.8px;
+  }
+
   /* Journal Page Styling */
   .journal {
     margin: 25px 0 0 0;
@@ -1517,6 +1523,7 @@ footer {
   /* Bookshelf Section Styling */
   .bookshelf {
     margin: 0;
+    padding: 0 23px 20px 23px;
     gap: 25px;
   }
   
@@ -1525,6 +1532,7 @@ footer {
     flex-basis: 21.25%;
     font-size: .8rem;
     margin-bottom: 10px;
+    margin-right: 24px;
   }
   
   /* book details */
@@ -1688,6 +1696,7 @@ footer {
   /* Bookshelf Section Styling */
   .bookshelf {
     margin-top: 0;
+    padding: 0 0 20px 0;
     gap: 35px;
   }
   
@@ -1695,6 +1704,7 @@ footer {
   .card {
     flex-basis: 17.7%;
     margin-bottom: 0;
+    margin-right: 0;
   }
   
   /* book details */
