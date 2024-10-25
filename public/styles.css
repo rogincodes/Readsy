@@ -948,7 +948,12 @@ textarea:focus {
   gap: 20px;
 }
 
-.sign-up-form > input {
+.auth-group {
+  width: 100%;
+  text-align: left;
+}
+
+.auth-group > input {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   padding: 14px;
@@ -979,6 +984,12 @@ textarea:focus {
   flex-basis: 100%;
   text-decoration: none;
   color: rgb(0, 179, 255);
+}
+
+.error-message {
+  text-align: left;
+  color: red;
+  display: none;
 }
 
 /* Login Page Styling */
