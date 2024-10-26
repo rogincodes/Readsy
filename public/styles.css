@@ -172,7 +172,7 @@ button:active {
 /* Home Section Styling */
 .home {
   display: flex;
-  height: 20vh;
+  height: 16vh;
 }
 
 .areadsy {
@@ -198,7 +198,7 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 14px;
+  padding-bottom: 11px;
 }
 
 .right-pane {
@@ -233,7 +233,7 @@ button:active {
 /* Random Book Section Styling */
 .random {
   display: flex;
-  height: 18vh;
+  height: 14vh;
 }
 
 .random-head {
@@ -310,7 +310,7 @@ button:active {
   display: flex;
   flex-direction: column;
   max-height: 500px;
-  font-size: .5rem;
+  font-size: .6rem;
   cursor: pointer;
   margin-bottom: 10px;
   margin-right: 4px;
@@ -332,7 +332,7 @@ button:active {
 /* book details */
 .book-cover {
   display: flex;
-  height: 165px;
+  height: 160px;
   width: 100%;
   margin: 0;
   transition: transform 0.2s ease-in-out;
@@ -342,7 +342,7 @@ button:active {
 }
 
 .book-details {
-  padding: 2px;
+  padding: 2px 0;
 }
 
 .book-details > * {
@@ -354,6 +354,7 @@ button:active {
 }
 
 .limited-text {
+  line-height: 1.1;
   display: -webkit-box;
   -webkit-line-clamp: 2;     /* For WebKit browsers */
   line-clamp: 2;             /* Placeholder for future standard */
@@ -647,13 +648,13 @@ textarea:focus {
 }
 
 .genre-width {
-  width: 160px;
+  width: 180px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="3" viewBox="0 0 10 5"><polygon points="0,0 5,5 10,0" fill="black"/></svg>') no-repeat right 10px center;
   background-color: #ffffff;
 }
 
 .sort-width {
-  width: 110px;
+  width: 125px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="3" viewBox="0 0 10 5"><polygon points="0,0 5,5 10,0" fill="black"/></svg>') no-repeat right 10px center;
   background-color: #ffffff;
 }
@@ -1144,7 +1145,7 @@ footer {
   /* card */
   .card {
     flex-basis: 21%;
-    font-size: .6rem;
+    font-size: .8rem;
     margin-bottom: 0;
     margin-right: 8px;
   }
@@ -1155,7 +1156,7 @@ footer {
   }
   
   .book-details {
-    padding: 2.2px;
+    padding: 2.5px 0;
   }
 
   .book-details > * {
@@ -1523,14 +1524,14 @@ footer {
   /* Bookshelf Section Styling */
   .bookshelf {
     margin: 0;
-    padding: 0 23px 20px 23px;
+    padding: 0 20px 20px 20px;
     gap: 25px;
   }
   
   /* card */
   .card {
     flex-basis: 21.25%;
-    font-size: .8rem;
+    font-size: .9rem;
     margin-bottom: 10px;
     margin-right: 24px;
   }
@@ -1541,7 +1542,7 @@ footer {
   }
   
   .book-details {
-    padding: 2.2px;
+    padding: 4px 0;
   }
 
   .book-details > * {
@@ -1713,11 +1714,7 @@ footer {
   }
   
   .book-details {
-    padding: 5px;
-  }
-  
-  .book-details > * {
-    margin: .3rem 0 0 0;
+    padding: 5px 0;
   }
   
   /* Books Page Styling */ 
