@@ -35,7 +35,7 @@ html, body, .layout {
 
 .head {
   margin: 0;
-  padding: 10px 0 0 5px;
+  padding: 10px 15px 0 15px;
   border-top: 1px solid #ccc;
   font-size: 1.2rem;
 }
@@ -233,12 +233,12 @@ button:active {
 /* Random Book Section Styling */
 .random {
   display: flex;
-  height: 14vh;
+  height: 18vh;
 }
 
 .random-head {
   margin: 0;
-  padding: 10px 0 0 5px;
+  padding: 10px 0 0 15px;
   border-top: 1px solid #ccc;
   font-size: 1.2rem;
 }
@@ -249,7 +249,7 @@ button:active {
   flex-direction: column;
   justify-content: center;
   font-size: .8rem;
-  padding-left: 5px;
+  padding-left: 15px;
 }
 
 .random-details > * {
@@ -300,7 +300,7 @@ button:active {
   margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
-  padding: 0 8px 20px 8px;
+  padding: 0 10px 20px 15px;
   gap: 10px;
 }
 
@@ -313,7 +313,7 @@ button:active {
   font-size: .6rem;
   cursor: pointer;
   margin-bottom: 10px;
-  margin-right: 4px;
+  margin-right: 2px;
 }
 
 .card:hover .book-cover{
@@ -376,7 +376,7 @@ button:active {
 .form-container {
   flex-basis: 100%;
   max-width: 100%;
-  padding: 5px;
+  padding: 5px 15px;
   margin-bottom: 25px;
 }
 
@@ -617,7 +617,7 @@ textarea:focus {
 .shelf-head {
   flex-basis: 100%;
   font-size: 1.6rem;
-  padding-left: 5px;
+  padding-left: 15px;
   margin: 15px 0 0 0;
 }
 
@@ -625,7 +625,7 @@ textarea:focus {
 .sorts {
   flex-basis: 100%;
   flex-wrap: wrap;
-  padding: 5px;
+  padding: 5px 15px;
   display: flex;
   gap: 5px;
 }
@@ -645,7 +645,7 @@ textarea:focus {
 }
 
 .genre-width {
-  width: 180px;
+  width: 160px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="3" viewBox="0 0 10 5"><polygon points="0,0 5,5 10,0" fill="black"/></svg>') no-repeat right 10px center;
   background-color: #ffffff;
 }
@@ -758,7 +758,7 @@ textarea:focus {
 
 /* About Page Styling */
 .about-container {
-  padding: 0 10px;
+  padding: 0 15px;
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
@@ -767,7 +767,7 @@ textarea:focus {
 
 .about-title {
   text-align: center;
-  font-size: 2.5em;
+  font-size: 2.4em;
   font-weight: bold;
   margin-bottom: 0.5em;
 }
@@ -1078,7 +1078,7 @@ footer {
   
   /* General Styling */
   .head {
-    padding: 10px 0 0 10px;
+    padding: 10px 0 0 20px;
     font-size: 1.7rem;
   }
   
@@ -1112,13 +1112,13 @@ footer {
   }
   
   .random-head {
-    padding: 10px 0 0 10px;
+    padding: 10px 0 0 20px;
     font-size: 1.7rem;
   }
   
   .random-details {
     font-size: 1rem;
-    padding-left: 10px;
+    padding-left: 20px;
   }
 
   .random-details > * {
@@ -1136,7 +1136,7 @@ footer {
   /* Bookshelf Section Styling */
   .bookshelf {
     margin-top: 15px;
-    padding: 0 12px 20px 12px;
+    padding: 0 12px 20px 20px;
     gap: 20px;
   }
   
@@ -1145,7 +1145,7 @@ footer {
     flex-basis: 21%;
     font-size: .8rem;
     margin-bottom: 0;
-    margin-right: 8px;
+    margin-right: 7px;
   }
   
   /* book details */
@@ -1282,12 +1282,12 @@ footer {
   .shelf-head {
     font-size: 2.25rem;
     margin: 10px 0 0 0;
-    padding: 0 10px;
+    padding: 0 20px;
   }
   
   /* sorts */
   .sorts {
-    padding: 0 10px;
+    padding: 0 20px;
     gap: 10px;
   }
 
@@ -1342,7 +1342,7 @@ footer {
   
   /* About Page Styling */
   .about-container {
-    padding: 0 20px;
+    padding: 0 30px;
   }
 
   .about-section h2 {
@@ -1430,7 +1430,7 @@ footer {
   }
 
   .card {
-    margin-right: 12.8px;
+    margin-right: 12px;
   }
 
   /* Journal Page Styling */
@@ -1507,7 +1507,7 @@ footer {
   }
   
   .head {
-    padding: 25px 0 20px 20px;
+    padding: 25px 0 20px 30px;
     font-size: 2.25rem;
   }
   
@@ -1568,13 +1568,13 @@ footer {
   }
   
   .random-head {
-    padding: 30px 0 0 20px;
+    padding: 30px 0 0 30px;
     font-size: 2.2rem;
   }
   
   .random-details {
     font-size: 1.4rem;
-    padding: 10px 0 0 20px;
+    padding: 10px 0 0 30px;
   }
 
   .random-details > * {
@@ -1593,7 +1593,7 @@ footer {
   /* Bookshelf Section Styling */
   .bookshelf {
     margin: 0;
-    padding: 0 20px 20px 20px;
+    padding: 0 20px 20px 30px;
     gap: 25px;
   }
   
@@ -1625,6 +1625,10 @@ footer {
   }
   
   /* form */
+  .form-container {
+    padding: 20px 30px;
+  }
+
   .form-group {
     flex-basis: 49%;
     max-width: 49%;
@@ -1666,7 +1670,7 @@ footer {
   .shelf-head {
     flex-basis: unset;
     margin: 20px 0 0 0;
-    padding: 0 20px;
+    padding: 0 30px;
   }
   
   /* sorts */
