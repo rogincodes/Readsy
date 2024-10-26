@@ -929,15 +929,12 @@ textarea:focus {
 
 .sign-up-card {
   height: max-content;
-  width: 500px;
-  padding: 1% 80px 40px 80px;
-  border-radius: 15px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  padding: 10px 20px 40px 20px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #fff;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   text-align: center;
@@ -946,7 +943,7 @@ textarea:focus {
 .sign-up-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
 }
 
 .auth-group {
@@ -957,23 +954,26 @@ textarea:focus {
 .auth-group > input {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  padding: 14px;
+  padding: 12px;
+  font-size: 12px;
 }
 
 .bottom-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .login-and-sign-up-button {
-  margin-top: 25px;
-  width: 170px;
+  flex-basis: 100%;
+  margin-top: 10px;
   color: #fff;
   background-color: rgb(0, 187, 255);
   border-color: rgb(0, 187, 255);
   font-weight: 600;
+  font-size: 14px;
+  padding: 10px;
 }
 
 .login-and-sign-up-button:hover {
@@ -1002,17 +1002,21 @@ textarea:focus {
   height: 100vh;
 }
 
-.login-container {
+.login-content {
   flex: 1;
+  margin-top: 100px;
+}
+
+.login-container {
   display: flex;
   justify-content: center;
-  width: 800px;
-  margin-top: 150px;
+  flex-wrap: wrap;
 }
 
 .readsy-intro {
-  flex-basis: 50%;
-  padding: 50px 80px 20px 0;
+  flex-basis: 100%;
+  max-width: 350px;
+  padding: 0 20px;
 }
 
 .intro-web {
@@ -1036,14 +1040,11 @@ textarea:focus {
 }
 
 .login-form {
+  max-width: 350px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  flex-basis: 50%;
-  padding: 40px;
+  padding: 20px;
   max-height: max-content;
-  background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -1052,8 +1053,8 @@ textarea:focus {
 }
 
 .foot {
-  width: 1220px;
-  border-top: 1px solid;
+  width: 100%;
+  border-top: 1px solid #373A40;
 }
 
 .footainer {
@@ -1373,10 +1374,50 @@ footer {
   .about-contact-intro {
     margin-bottom: 20px;
   }
+
+  /* Sign Up Page Styling */
+  .sign-up-card {
+    width: 400px;
+    padding: 10px 40px 40px 40px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  .sign-up-form {
+    gap: 15px;
+  }
+
+  .bottom-buttons {
+    gap: 15px;
+  }
+
+  .login-and-sign-up-button {
+    margin-top: 15px;
+  }
+
+  /* Login Page Styling */
+  .readsy-intro {
+    max-width: 400px;
+    padding: 0 10px;
+  }
+
+  .login-form {
+    max-width: 400px;
+    padding: 40px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
   /* card */
   .card {
     flex-basis: 21.25%;
@@ -1417,6 +1458,34 @@ footer {
   .j-rating {
     font-size: .9rem;
     margin: 8px 0 15px 0;
+  }
+
+  /* Sign Up Page Styling */
+  .sign-up-card {
+    width: 450px;
+    padding: 10px 70px 40px 70px;
+  }
+
+  .sign-up-form {
+    gap: 20px;
+  }
+
+  .bottom-buttons {
+    gap: 20px;
+  }
+
+  .login-and-sign-up-button {
+    margin-top: 20px;
+  }
+
+  /* Login Page Styling */
+  .readsy-intro {
+    max-width: 450px;
+  }
+
+  .login-form {
+    max-width: 450px;
+    padding: 40px 70px 40px 70px;
   }
 }
 
@@ -1538,7 +1607,7 @@ footer {
   
   /* book details */
   .book-cover {
-    height: 310px;
+    height: 315px;
   }
   
   .book-details {
@@ -1656,6 +1725,50 @@ footer {
   
   .about-image img {
     height: 260px;
+  }
+  
+  /* Sign Up Page Styling */
+  .sign-up-card {
+    width: 500px;
+    padding: 10px 80px 40px 80px;
+  }
+
+  .auth-group > input {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .login-and-sign-up-button {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  /* Login Page Styling */
+  .login-content {
+    margin-top: 0;
+  }
+
+  .login-container {
+    width: 800px;
+    margin-top: 150px;
+  }
+
+  .readsy-intro {
+    flex-basis: 50%;
+    padding: 50px 80px 20px 0;
+  }
+
+  .login-form {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    flex-basis: 50%;
+    padding: 40px;
+  }
+
+  .foot {
+    width: 1220px;
   }
 }
 

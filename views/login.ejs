@@ -9,31 +9,33 @@
 </head>
 <body>
   <section class="login">
-    <div class="login-container">
-      <div class="readsy-intro">
-        <h1 class="intro-web">readsy</h1>
-        <p class="intro-description">a place to save your reading collection
-          review the books you have read,
-          and keep the salient parts for lookup by taking notes
-        </p>
-      </div>
-      <div class="login-form">
-        <form action="/login" method="POST">
-          <div class="sign-up-form">
-            <div class="auth-group">
-              <input type="text" id="username" name="username" placeholder="Email" required>
-              <span class="error"><%= notFound %></span>
+    <div class="login-content">
+      <div class="login-container">
+        <div class="readsy-intro">
+          <h1 class="intro-web">readsy</h1>
+          <p class="intro-description">a place to save your reading collection
+            review the books you have read,
+            and keep the salient parts for lookup by taking notes
+          </p>
+        </div>
+        <div class="login-form">
+          <form action="/login" method="POST">
+            <div class="sign-up-form">
+              <div class="auth-group">
+                <input type="text" id="username" name="username" placeholder="Email" required>
+                <span class="error"><%= notFound %></span>
+              </div>
+              <div class="auth-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="error"><%= wrongPsswrd %></span>
+              </div>
             </div>
-            <div class="auth-group">
-              <input type="password" id="password" name="password" placeholder="Password" required>
-              <span class="error"><%= wrongPsswrd %></span>
+            <div class="bottom-buttons">
+              <button type="submit" class="login-and-sign-up-button">Log in</button>
+              <p>Don't have an account? <a href="/signup" class="redirect-button">Sign up</a></p>
             </div>
-          </div>
-          <div class="bottom-buttons">
-            <button type="submit" class="login-and-sign-up-button">Log in</button>
-            <p>Don't have an account? <a href="/signup" class="redirect-button">Sign up</a></p>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
     <footer class="foot">
