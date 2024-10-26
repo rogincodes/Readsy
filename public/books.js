@@ -3,26 +3,6 @@ let searchQuery = "";
 let sorted = "";
 let theGenre = "";
 
-// Check if password matches
-document.getElementById("registerForm").addEventListener("submit", function (event) {
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-
-  if (password.length < 6) {
-    event.preventDefault(); // Prevent the form from submitting
-    document.getElementById("error-message").innerHTML = "Password must be at least 6 characters long.";
-    document.getElementById("error-message").style.display = "block";
-  } else {
-    if (password !== confirmPassword) {
-      event.preventDefault(); // Prevent the form from submitting
-      document.getElementById("error-message").innerHTML = "Passwords do not match!"
-      document.getElementById("error-message").style.display = "block";
-    } else {
-      document.getElementById("error-message").style.display = "none";
-    }
-  }
-});
-
 // SEARCH
 const input = document.getElementById('search-input');
 const bookshelf = document.getElementById('bookshelf');
@@ -45,25 +25,25 @@ const fetchResults = async (query) => {
     bookCount = results.length;
     sorted = data.sort;
     theGenre = data.genre;
-    generateFilterText();
+    await generateFilterText();
     if (query === "") {
       if (theGenre === "") {
-        hideSearchFilter();
+        await hideSearchFilter();
       } else {
-        showSearchFilter();
+        await showSearchFilter();
       }
     } else {
-      showSearchFilter();
+      await showSearchFilter();
     }
-    updateBookshelf(results);
+    await updateBookshelf(results);
   } catch (error) {
     console.error('Error fetching search results:', error);
     bookshelf.innerHTML = '<p>Error fetching results</p>'; // Handle error
   }
 };
 // Event listener for input changes
-input.addEventListener('input', () => {
-    fetchResults(input.value);
+input.addEventListener('input', async () => {
+    await fetchResults(input.value);
 });
 
 // SORT BY DATE, TITLE OR RATING
@@ -86,8 +66,8 @@ sortSelect.addEventListener('change', async () => {
     bookCount = results.length;
     sorted = data.sort;
     theGenre = data.genre;
-    generateFilterText();
-    updateBookshelf(results);
+    await generateFilterText();
+    await updateBookshelf(results);
   } catch (error) {
     console.error('Error fetching search results:', error);
     bookshelf.innerHTML = '<p>Error fetching results</p>'; // Handle error
@@ -114,9 +94,9 @@ genreSelect.addEventListener('change', async () => {
     bookCount = results.length;
     sorted = data.sort;
     theGenre = data.genre;
-    generateFilterText();
-    showSearchFilter();
-    updateBookshelf(results);
+    await generateFilterText();
+    await showSearchFilter();
+    await updateBookshelf(results);
   } catch (error) {
     console.error('Error fetching search results:', error);
     bookshelf.innerHTML = '<p>Error fetching results</p>'; // Handle error
@@ -124,7 +104,7 @@ genreSelect.addEventListener('change', async () => {
 });
 
 // Populate the BOOKSHELF with results
-function updateBookshelf(results) {
+async function updateBookshelf(results) {
   bookshelf.innerHTML = results.map(book => `
     <div class="card">
       <a href="/journal/${book.id}">
@@ -140,7 +120,7 @@ function updateBookshelf(results) {
 };
 
 // Build the search text
-function generateFilterText() {
+async function generateFilterText() {
   const searchText = document.getElementById('search-text');
   // check if singular or plural
   let noun = "";
@@ -162,13 +142,13 @@ function generateFilterText() {
 };
 
 // Show filters
-function showSearchFilter() {
+async function showSearchFilter() {
   const searchDiv = document.getElementById('search-pane');
   searchDiv.style.display = 'flex'; // Set display to flex
 }
 
 // Hide filters
-function hideSearchFilter() {
+async function hideSearchFilter() {
   const searchDiv = document.getElementById('search-pane');
   searchDiv.style.display = 'none'; // Set display to flex
 }
