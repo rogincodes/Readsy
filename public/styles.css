@@ -556,7 +556,7 @@ textarea:focus {
   flex-basis: 100%;
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  padding: 5px 15px;
 }
 
 .journal-details > * {
@@ -604,6 +604,10 @@ textarea:focus {
 
 .j-labels {
   margin: 0;
+}
+
+.by-author {
+  font-weight: 300;
 }
 
 /* Books Page Styling */
@@ -1227,7 +1231,7 @@ footer {
   /* journal details */
   .journal-details {
     flex-basis: 72%;
-    padding: 5px;
+    padding: 5px 20px 5px 5px;
     max-height: 100vh;
   }
   

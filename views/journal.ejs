@@ -26,7 +26,7 @@
 
   <!-- BOOKSHELF -->
   <% if (locals.authorBooks[0]) {%>
-    <h1 class="head author-books" id="author-books">Books by <span class="sub-head"><%= book.author %></span> I read</h1>
+    <h1 class="head author-books" id="author-books">Books by <span class="by-author"><%= book.author %></span> I read</h1>
     <section class="bookshelf" id="bookshelf">
       <% for(let book of authorBooks) {%>
         <div class="card">
